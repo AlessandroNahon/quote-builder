@@ -14,7 +14,7 @@ function App() {
   const state = {
     handleSelectProduct,
     cart,
-    quote: { ...quote, lineItems: cart },
+    quote,
     handleUpdateItemQty
   }
 

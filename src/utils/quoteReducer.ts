@@ -6,12 +6,13 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
 			const updatedLineItems = action.lineItems.map(
 				(li: LineItemDataInterface) => {
 					if (li.id === action.id) {
-						return { ...li, quantity: action.quantity }
+						return { ...li, quantity: Number(action.quantity) }
 					} else {
 						return li
 					}
 				}
 			)
+
 			return { ...quote, lineItems: updatedLineItems }
 		}
 		case 'updateItemUnitPrice': {
