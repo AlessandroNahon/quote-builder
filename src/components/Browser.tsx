@@ -1,12 +1,6 @@
-import { ReactNode, type ReactElement } from 'react'
+import { type ReactElement, PropsWithChildren } from 'react'
 
-type PropsWithChildren<P> = P & { children?: ReactNode }
-
-interface Props {
-
-}
-
-export default function Browser({ children }: PropsWithChildren<Props>): ReactElement {
+export default function Browser({ children }: PropsWithChildren): ReactElement {
   return (
     <section id='browser'>
       {children}
