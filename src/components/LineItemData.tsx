@@ -25,6 +25,6 @@ export default function LineItemData({ lineItem }: Props): ReactElement {
     <input type='number' placeholder='Quantity' onChange={handleQtyInput} />
     <label>Unit Price</label>
     <input type='text' placeholder='Unit Price' onChange={handleUnitPriceInput} />
-    <p>Total: ${lineItem?.totalPrice}</p>
+    <p>Unit Total: ${lineItem?.totalPrice}</p>
   </>)
 }
