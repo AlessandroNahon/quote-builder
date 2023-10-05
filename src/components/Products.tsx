@@ -11,7 +11,8 @@ export default function Products({ products }: Props): ReactElement {
   if (products.length === 0) return <p>Nothing to see here</p>
 
   return (
-    <Browser>
+    <Browser className="products">
+      <h2>Products</h2>
       <ul>
         {
           products.map((product: ProductType) => (

@@ -1,8 +1,12 @@
 import { type ReactElement, PropsWithChildren } from 'react'
 
-export default function Browser({ children }: PropsWithChildren): ReactElement {
+interface Props {
+  className?: string
+}
+
+export default function Browser({ children, className }: PropsWithChildren<Props>): ReactElement {
   return (
-    <section id='browser'>
+    <section id='browser' className={className}>
       {children}
     </section>
   )

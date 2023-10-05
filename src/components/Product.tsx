@@ -1,6 +1,6 @@
 import { useContext, type ReactElement } from 'react'
 
-import { ProductType } from '../types'
+import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
 
 interface Props {
@@ -9,12 +9,14 @@ interface Props {
 
 export default function Product({ product }: Props): ReactElement {
 
-  const { handleSelectProduct } = useContext(AppContext)
+  const { handleSelectProduct, quote } = useContext(AppContext)
+  const ok = quote.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
 
+  console.log('ok', ok)
   return (
-    <li key={product.sku} onClick={() => handleSelectProduct!(product)}>
-      <p>{product.name}</p>
-      <span>{product.sku}</span>
+    <li className={ok ? 'selected' : ''} key={product.sku} onClick={() => handleSelectProduct!(product)}>
+      <span>{product.name}</span>
+      <span>SKU: {product.sku}</span>
     </li>
   )
 }

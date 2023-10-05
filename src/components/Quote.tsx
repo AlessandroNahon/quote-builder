@@ -9,11 +9,10 @@ export default function Quote(): ReactElement {
 
   return (
     <Browser>
-      <section id="quote">
-        {quote.lineItems?.map((item: LineItemDataInterface) => (
-          <LineItem item={item} />
-        ))}
-      </section>
+      <h2>Quote</h2>
+      {quote.lineItems?.map((item: LineItemDataInterface) => (
+        <LineItem item={item} />
+      ))}
     </Browser>
   )
 }

@@ -1,3 +1,7 @@
+#browser {
+    padding: 20px;
+}
+
 #quote-builder {
   display: flex;
   height: 100vh;
@@ -9,5 +13,30 @@
 
 ul {
   list-style: none;
-  padding: 25px;
+  margin: 0;
+  max-width: 25em;
+
+  & li {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 20px 10px;
+    margin: 20px 0;
+    transition: 0.3s ease-out;
+
+    &.selected {
+        background-color: lightpink;
+        border-color: lightpink;
+      }
+
+    &:hover {
+      border-color: lightseagreen;
+    }
+  }
 }
+
+.products {
+  background-color: rgba(255, 160, 122, 0.5);
+}
+
+
