@@ -1,18 +1,19 @@
-import { type ReactElement } from 'react'
+import { useContext, type ReactElement } from 'react'
 import Product from './Product'
 import LineItemData from './LineItemData'
 import { ProductType } from '../types'
+import AppContext from '../context/appContext'
 
 interface Props {
   item: ProductType
-  cart: any
 }
 
-export default function LineItem({ item, cart }: Props): ReactElement {
-  const lineItemData = { ...item, quantity: 0, unitPrice: 0, totalPrice: 0 }
+export default function LineItem({ item }: Props): ReactElement {
+  const { quote } = useContext(AppContext)
+  const lineItem: any = quote?.lineItems.find(li => li.id === item.id)
 
   return (<>
     <Product product={item} />
-    <LineItemData lineItem={lineItemData} />
+    <LineItemData lineItem={lineItem} />
   </>)
 }

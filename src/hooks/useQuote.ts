@@ -22,8 +22,37 @@ export default function useQuote(cart: any) {
 		})
 	}
 
+	function handleUpdateItemUnitPrice(
+		lineItem: LineItemDataInterface,
+		unitPrice: number
+	) {
+		dispatch({
+			...lineItem,
+			type: 'updateItemUnitPrice',
+			unitPrice,
+			lineItems: cart,
+		})
+	}
+
+	function handleUpdateItemTotal(id: number) {
+		dispatch({
+			type: 'updateItemTotal',
+			id,
+		})
+	}
+
+	function onLoad(cart: any) {
+		dispatch({
+			type: 'onLoad',
+			lineItems: cart,
+		})
+	}
+
 	return {
 		quote,
 		handleUpdateItemQty,
+		handleUpdateItemUnitPrice,
+		onLoad,
+		handleUpdateItemTotal,
 	}
 }

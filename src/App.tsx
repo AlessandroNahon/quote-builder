@@ -9,13 +9,16 @@ import useQuote from './hooks/useQuote';
 function App() {
   const { cart, handleSelectProduct } = useCart()
 
-  const { quote, handleUpdateItemQty } = useQuote(cart)
+  const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, onLoad, handleUpdateItemTotal } = useQuote(cart)
 
   const state = {
     handleSelectProduct,
     cart,
     quote,
-    handleUpdateItemQty
+    handleUpdateItemQty,
+    handleUpdateItemUnitPrice,
+    onLoad,
+    handleUpdateItemTotal
   }
 
   return (

@@ -5,7 +5,10 @@ interface AppContextInterface {
   handleSelectProduct: ((product: ProductType, cart: ProductType[]) => void) | null,
   cart: ProductType[] | []
   quote: QuoteInterface,
-  handleUpdateItemQty: ((lineItem: LineItemDataInterface, quantity: number) => void) | null
+  handleUpdateItemQty: ((lineItem: LineItemDataInterface, quantity: number) => void) | null,
+  handleUpdateItemUnitPrice: ((lineItem: LineItemDataInterface, unitPrice: number) => void) | null,
+  onLoad: ((lineItems: LineItemDataInterface[]) => void) | null,
+  handleUpdateItemTotal: ((id: number) => void) | null,
 }
 
 const defaultState: AppContextInterface = {
@@ -17,7 +20,10 @@ const defaultState: AppContextInterface = {
     subtotal: 0,
     discounts: 0,
   },
-  handleUpdateItemQty: null
+  handleUpdateItemQty: null,
+  handleUpdateItemUnitPrice: null,
+  onLoad: null,
+  handleUpdateItemTotal: null
 }
 
 const AppContext = createContext(defaultState)

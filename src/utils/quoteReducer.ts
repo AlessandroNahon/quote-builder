@@ -1,27 +1,45 @@
-import { LineItemDataInterface, QuoteInterface } from '../types'
+import { QuoteInterface } from '../types'
 
 export default function quoteReducer(quote: QuoteInterface, action: any) {
 	switch (action.type) {
+		case 'onLoad': {
+			return { ...quote, lineItems: action.lineItems }
+		}
 		case 'updateItemQuantity': {
-			const updatedLineItems = action.lineItems.map(
-				(li: LineItemDataInterface) => {
-					if (li.id === action.id) {
-						return { ...li, quantity: Number(action.quantity) }
-					} else {
-						return li
-					}
+			const updatedLineItems = quote.lineItems.map((li: any) => {
+				if (li.id === action.id) {
+					return { ...li, quantity: Number(action.quantity) }
+				} else {
+					return li
 				}
-			)
+			})
 
 			return { ...quote, lineItems: updatedLineItems }
 		}
 		case 'updateItemUnitPrice': {
-			const updateOk = quote.lineItems
-			return { ...quote, lineItems: updateOk }
+			const updatedLineItems = quote.lineItems.map((li: any) => {
+				if (li.id === action.id) {
+					return { ...li, unitPrice: Number(action.unitPrice) }
+				} else {
+					return li
+				}
+			})
+
+			return { ...quote, lineItems: updatedLineItems }
 		}
 		case 'updateItemTotal': {
-			const updateOkOk = quote.lineItems
-			return { ...quote, lineItems: updateOkOk }
+			const updatedLineItems = quote.lineItems.map((li: any) => {
+				if (li.id === action.id) {
+					return {
+						...li,
+						totalPrice: Number(li.unitPrice) * Number(li.quantity),
+					}
+				} else {
+					return li
+				}
+			})
+
+			return { ...quote, lineItems: updatedLineItems }
 		}
 		case 'updateTotal': {
 			return quote
