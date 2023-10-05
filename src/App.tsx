@@ -9,7 +9,7 @@ import useQuote from './hooks/useQuote';
 function App() {
   const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, handleUpdateItemTotal, handleSelectProduct } = useQuote()
 
-  const state = {
+  const store = {
     quote,
     handleUpdateItemQty,
     handleUpdateItemUnitPrice,
@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={state} >
+    <AppContext.Provider value={store} >
       <div className="App">
         <QuoteBuilder />
       </div>

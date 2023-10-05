@@ -58,3 +58,9 @@ ul {
     width: 15em;
   }
 }
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
