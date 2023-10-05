@@ -1,9 +1,27 @@
-import { QuoteInterface } from '../types'
+import { LineItemDataInterface, QuoteInterface } from '../types'
 
 export default function quoteReducer(quote: QuoteInterface, action: any) {
 	switch (action.type) {
-		case 'onLoad': {
-			return { ...quote, lineItems: action.lineItems }
+		case 'addLineItem': {
+			if (
+				quote.lineItems?.length > 0 &&
+				quote.lineItems?.some((p: LineItemDataInterface) => p.id === action.id)
+			)
+				return quote
+
+			const updatedLineItems: LineItemDataInterface[] = [
+				...quote?.lineItems,
+				action.lineItem,
+			]
+			return { ...quote, lineItems: updatedLineItems }
+		}
+		case 'removeLineItem': {
+			return {
+				...quote,
+				lineItems: quote.lineItems.filter(
+					(p: LineItemDataInterface) => p.id !== action.id
+				),
+			}
 		}
 		case 'updateItemQuantity': {
 			const updatedLineItems = quote.lineItems.map((li: any) => {

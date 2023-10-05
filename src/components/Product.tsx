@@ -9,10 +9,10 @@ interface Props {
 
 export default function Product({ product }: Props): ReactElement {
 
-  const { handleSelectProduct, cart } = useContext(AppContext)
+  const { handleSelectProduct } = useContext(AppContext)
 
   return (
-    <li key={product.sku} onClick={() => handleSelectProduct!(product, cart)}>
+    <li key={product.sku} onClick={() => handleSelectProduct!(product)}>
       <p>{product.name}</p>
       <span>{product.sku}</span>
     </li>

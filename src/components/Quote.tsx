@@ -1,20 +1,16 @@
-import { useContext, type ReactElement, useEffect } from 'react'
+import { useContext, type ReactElement } from 'react'
 import Browser from './Browser'
 import AppContext from '../context/appContext'
 import LineItem from './LineItem'
+import { LineItemDataInterface } from '../types'
 
 export default function Quote(): ReactElement {
-  const { cart, onLoad } = useContext(AppContext)
-
-  useEffect(() => {
-    if (cart.length > 0 && onLoad) onLoad(cart as any)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart])
+  const { quote } = useContext(AppContext)
 
   return (
     <Browser>
       <section id="quote">
-        {cart.map(item => (
+        {quote.lineItems?.map((item: LineItemDataInterface) => (
           <LineItem item={item} />
         ))}
       </section>

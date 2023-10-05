@@ -1,7 +1,7 @@
 import { useContext, type ReactElement } from 'react'
 import Product from './Product'
 import LineItemData from './LineItemData'
-import { ProductType } from '../types'
+import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export default function LineItem({ item }: Props): ReactElement {
   const { quote } = useContext(AppContext)
-  const lineItem: any = quote?.lineItems.find(li => li.id === item.id)
+  const lineItem: any = quote?.lineItems.find((li: LineItemDataInterface) => li.id === item.id)
 
   return (<>
     <Product product={item} />

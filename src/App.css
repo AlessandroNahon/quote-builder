@@ -6,3 +6,8 @@
     width: 50em;
   }
 }
+
+ul {
+  list-style: none;
+  padding: 25px;
+}
