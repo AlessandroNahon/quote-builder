@@ -13,14 +13,17 @@ export default function Quote(): ReactElement {
       {quote.lineItems?.map((item: LineItemDataInterface) => (
         <LineItem item={item} />
       ))}
-      <div className='spacer'></div>
-      <p> Subtotal: ${quote.subtotal}</p>
-      <label>Discounts</label>
-      <input type='number' />
-      <label>Tax</label>
-      <input type='number' />
-      <div className='spacer'></div>
-      <p>Total: ${quote.total}</p>
+      <div id="total">
+        <div className='spacer'></div>
+        <p> Subtotal: ${quote.subtotal}</p>
+        <label>Discounts</label>
+        <input type='number' />
+        <label>Tax</label>
+        <input type='number' />
+        <div className='spacer'></div>
+        <p>Total: ${quote.total}</p>
+      </div>
+
     </Browser>
   )
 }
