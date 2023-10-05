@@ -12,10 +12,9 @@ export default function Product({ product }: Props): ReactElement {
   const { handleSelectProduct, quote } = useContext(AppContext)
   const ok = quote.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
 
-  console.log('ok', ok)
   return (
     <li className={ok ? 'selected' : ''} key={product.sku} onClick={() => handleSelectProduct!(product)}>
-      <span>{product.name}</span>
+      <div>{product.name}</div>
       <span>SKU: {product.sku}</span>
     </li>
   )
