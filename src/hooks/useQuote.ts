@@ -7,6 +7,7 @@ const initialArg = {
 	tax: 0,
 	subtotal: 0,
 	discounts: 0,
+	total: 0,
 }
 
 export default function useQuote() {
@@ -20,6 +21,7 @@ export default function useQuote() {
 				quantity: 0,
 				unitPrice: 0,
 				totalPrice: 0,
+				total: 0,
 			},
 		})
 	}

@@ -15,6 +15,7 @@ export interface QuoteInterface {
 	tax: number
 	subtotal: number
 	discounts: number
+	total: number
 }
 
 export type QuoteType = QuoteInterface

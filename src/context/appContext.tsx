@@ -15,6 +15,7 @@ const defaultState: AppContextInterface = {
     tax: 0,
     subtotal: 0,
     discounts: 0,
+    total: 0
   },
   handleSelectProduct: null,
   handleUpdateItemQty: null,
