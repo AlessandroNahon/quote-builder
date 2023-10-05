@@ -4,11 +4,13 @@ import AppContext from '../context/appContext'
 import LineItem from './LineItem'
 
 export default function Quote(): ReactElement {
-
   const { cart, onLoad } = useContext(AppContext)
+
   useEffect(() => {
-    if (cart) onLoad!(cart as any)
+    if (cart.length > 0 && onLoad) onLoad(cart as any)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
+
   return (
     <Browser>
       <section id="quote">
