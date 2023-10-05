@@ -18,7 +18,7 @@ export default function Products({ products }: Props): ReactElement {
     if (startsWithNumber(searchValue)) {
       return products.filter((p) => p.sku.includes(searchValue))
     } else {
-      return products.filter((p) => p.name.includes(searchValue))
+      return products.filter((p) => p.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
   }
 
