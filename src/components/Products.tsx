@@ -1,6 +1,6 @@
 import { type ReactElement, useState } from 'react'
 import { ProductType } from '../types'
-import { Browser, Product } from '.'
+import { Product } from '.'
 import Search from './Search'
 
 interface Props {
@@ -23,7 +23,7 @@ export default function Products({ products }: Props): ReactElement {
   }
 
   return (
-    <Browser className="products">
+    <section id='browser' className="products">
       <h2>Products</h2>
       <Search placeholder='Search products' setSearchValue={setSearchValue} />
       <ul>
@@ -33,7 +33,7 @@ export default function Products({ products }: Props): ReactElement {
           ))
         }
       </ul>
-    </Browser>
+    </section>
 
   )
 }

@@ -8,7 +8,7 @@ export default function Quote(): ReactElement {
   const { quote, handleUpdateDiscounts, handleUpdateTax } = useContext(AppContext)
 
   return (
-    <Browser>
+    <section id='browser' className='quote'>
       <h2>Quote</h2>
       {quote.lineItems.length === 0 && <h3>Select a product.</h3>}
       {quote.lineItems.length > 0 && <>
@@ -32,6 +32,6 @@ export default function Quote(): ReactElement {
           <p>Total: ${quote.total > 0 ? quote.total : 0}</p>
         </div>
       </>}
-    </Browser>
+    </section>
   )
 }

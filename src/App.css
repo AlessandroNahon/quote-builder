@@ -1,5 +1,16 @@
 #browser {
   padding: 20px;
+  overflow-y: scroll;
+  transition: 0.3s ease-out;
+  
+  &:hover {
+
+    &.quote {
+      padding: 20px 100px;
+    }
+
+  }
+  
 }
 
 #quote-builder {
