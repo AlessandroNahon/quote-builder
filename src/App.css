@@ -10,7 +10,39 @@
     }
 
   }
+}
   
+.quote {
+  background-color: lightyellow;
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & button {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    transition: 0.1s ease-out;
+
+    & .download {
+        max-width: 20px;
+      }
+
+    &:hover {
+      background-color: rgba(119, 136, 153, 0.5);
+
+      & .download {
+          filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(200deg) brightness(118%) contrast(119%);
+        }
+    }
+
+
+  }
 }
 
 #quote-builder {
@@ -63,7 +95,7 @@ ul {
     border-radius: 8px;
     padding: 20px 10px;
     margin: 20px 0;
-    transition: 0.3s ease-out;
+    transition: 0.1s ease-out;
 
     &.selected {
       background-color: lightpink;
@@ -82,5 +114,14 @@ ul {
       min-width: 72px;
       text-align: right;
     }
+}
+
+@media print {
+
+  button, img {
+    display: none;
+  }
+  
+
 }
 

@@ -13,7 +13,9 @@ function startsWithNumber(str: string) {
 
 export default function Products({ products }: Props): ReactElement {
   const [searchValue, setSearchValue] = useState('')
+
   if (products.length === 0) return <p>Nothing to see here</p>
+
   function searchProduct(products: ProductType[]) {
     if (startsWithNumber(searchValue)) {
       return products.filter((p) => p.sku.includes(searchValue))

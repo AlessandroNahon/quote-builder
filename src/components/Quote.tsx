@@ -1,15 +1,39 @@
-import { useContext, type ReactElement } from 'react'
-import Browser from './Browser'
+import { useContext, type ReactElement, useRef } from 'react'
+
 import AppContext from '../context/appContext'
 import LineItem from './LineItem'
 import { LineItemDataInterface } from '../types'
+import DownloadSvg from '../download.svg'
 
 export default function Quote(): ReactElement {
+  const ref = useRef<any>();
+
+
   const { quote, handleUpdateDiscounts, handleUpdateTax } = useContext(AppContext)
 
+  function saveQuote(e: any) {
+    e.preventDefault()
+
+    const a = window.open('', '', 'height=660, width=750');
+    a!.document.write('<html><body >');
+    a!.document.write(ref.current.outerHTML.toString());
+    a!.document.write('</body></html>');
+    a!.document.close();
+    a!.print();
+  }
+
   return (
-    <section id='browser' className='quote'>
-      <h2>Quote</h2>
+    <section id='browser' className='quote' ref={ref}>
+      <span className='quote-header'>
+        <h2>Quote</h2>
+        {
+          quote.lineItems.length > 0 && (
+            <button onClick={saveQuote}>
+              <img className='download' src={DownloadSvg} alt='download button' />
+            </button>
+          )
+        }
+      </span>
       {quote.lineItems.length === 0 && <h3>Select a product.</h3>}
       {quote.lineItems.length > 0 && <>
         {quote.lineItems?.map((item: LineItemDataInterface) => (
