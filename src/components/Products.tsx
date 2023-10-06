@@ -17,11 +17,10 @@ export default function Products({ products }: Props): ReactElement {
   if (products.length === 0) return <p>Nothing to see here</p>
 
   function searchProduct(products: ProductType[]) {
-    if (startsWithNumber(searchValue)) {
-      return products.filter((p) => p.sku.includes(searchValue))
-    } else {
-      return products.filter((p) => p.name.toLowerCase().includes(searchValue.toLowerCase()))
-    }
+    if (startsWithNumber(searchValue)) return products.filter((p) => p.sku.includes(searchValue))
+
+    return products.filter((p) => p.name.toLowerCase().includes(searchValue.toLowerCase()))
+
   }
 
   return (

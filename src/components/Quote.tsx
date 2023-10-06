@@ -37,7 +37,7 @@ export default function Quote(): ReactElement {
       {quote.lineItems.length === 0 && <h3>Select a product.</h3>}
       {quote.lineItems.length > 0 && <>
         {quote.lineItems?.map((item: LineItemDataInterface) => (
-          <LineItem item={item} />
+          <LineItem key={item.sku} item={item} />
         ))}
         <div id="total">
           <div className='spacer'></div>
