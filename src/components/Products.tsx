@@ -31,7 +31,7 @@ export default function Products({ products }: Props): ReactElement {
       <ul>
         {
           searchProduct(products)?.map((product: ProductType) => (
-            <Product product={product} />
+            <Product key={product.sku} product={product} />
           ))
         }
       </ul>
