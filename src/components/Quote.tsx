@@ -18,12 +18,18 @@ export default function Quote(): ReactElement {
         <div id="total">
           <div className='spacer'></div>
           <p> Subtotal: ${quote.subtotal}</p>
-          <label>Discounts</label>
-          <input type='number' name='discount' onChange={(e) => handleUpdateDiscounts!(Number(e.target.value))} />
-          <label>Tax</label>
-          <input type='number' name='tax' onChange={(e) => handleUpdateTax!(Number(e.target.value))} />
+          <span>
+            <input type='number' name='discount' onChange={(e) => handleUpdateDiscounts!(Number(e.target.value))} />
+            <label>Discounts</label>
+
+          </span>
+          <span>
+            <input type='number' name='tax' onChange={(e) => handleUpdateTax!(Number(e.target.value))} />
+            <label>Tax</label>
+          </span>
+
           <div className='spacer'></div>
-          <p>Total: ${quote.total}</p>
+          <p>Total: ${quote.total > 0 ? quote.total : 0}</p>
         </div>
       </>}
     </Browser>

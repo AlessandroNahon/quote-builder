@@ -64,3 +64,12 @@ ul {
     }
   }
 }
+
+#total {
+  & label {
+      display: inline-block;
+      min-width: 72px;
+      text-align: right;
+    }
+}
+
