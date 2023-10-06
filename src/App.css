@@ -11,32 +11,6 @@
   }
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  display: grid;
-    grid-template-columns: 10em 10em 10em;
-    grid-gap: 10px;
-
-  & li {
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    padding: 20px 10px;
-    margin: 20px 0;
-    transition: 0.3s ease-out;
-
-    &.selected {
-        background-color: lightpink;
-        border-color: lightpink;
-      }
-
-    &:hover {
-      border-color: lightseagreen;
-    }
-  }
-}
-
 .products {
   background-color: rgba(255, 160, 122, 0.5);
 }
@@ -63,4 +37,30 @@ input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 10em 10em 10em;
+  grid-gap: 10px;
+
+  & li {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 20px 10px;
+    margin: 20px 0;
+    transition: 0.3s ease-out;
+
+    &.selected {
+      background-color: lightpink;
+      border-color: lightpink;
+    }
+
+    &:hover {
+      border-color: lightseagreen;
+    }
+  }
 }

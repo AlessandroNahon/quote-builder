@@ -7,6 +7,10 @@ interface AppContextInterface {
   handleUpdateItemQty: ((lineItem: LineItemDataInterface, quantity: number) => void) | null,
   handleUpdateItemUnitPrice: ((lineItem: LineItemDataInterface, unitPrice: number) => void) | null,
   handleUpdateItemTotal: ((id: number) => void) | null,
+  handleUpdateSubTotal: (() => void) | null,
+  handleUpdateTotal: (() => void) | null,
+  handleUpdateDiscounts: ((discounts: number) => void) | null,
+  handleUpdateTax: ((tax: number) => void) | null,
 }
 
 const defaultState: AppContextInterface = {
@@ -20,7 +24,11 @@ const defaultState: AppContextInterface = {
   handleSelectProduct: null,
   handleUpdateItemQty: null,
   handleUpdateItemUnitPrice: null,
-  handleUpdateItemTotal: null
+  handleUpdateItemTotal: null,
+  handleUpdateSubTotal: null,
+  handleUpdateTotal: null,
+  handleUpdateDiscounts: null,
+  handleUpdateTax: null
 }
 
 const AppContext = createContext(defaultState)

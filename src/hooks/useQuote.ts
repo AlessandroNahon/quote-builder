@@ -27,7 +27,6 @@ export default function useQuote() {
 	}
 
 	function handleDeleteLineItem(itemId: number) {
-		console.log('id', itemId)
 		dispatch({
 			type: 'removeLineItem',
 			id: itemId,
@@ -61,6 +60,37 @@ export default function useQuote() {
 			type: 'updateItemTotal',
 			id,
 		})
+
+		handleUpdateSubTotal()
+	}
+
+	function handleUpdateSubTotal() {
+		dispatch({
+			type: 'updateSubTotal',
+		})
+		handleUpdateTotal()
+	}
+
+	function handleUpdateDiscounts(discounts: number) {
+		dispatch({
+			type: 'updateDiscounts',
+			discounts,
+		})
+		handleUpdateTotal()
+	}
+
+	function handleUpdateTax(tax: number) {
+		dispatch({
+			type: 'updateTax',
+			tax,
+		})
+		handleUpdateTotal()
+	}
+
+	function handleUpdateTotal() {
+		dispatch({
+			type: 'updateTotal',
+		})
 	}
 
 	function handleSelectProduct(product: ProductType) {
@@ -71,6 +101,9 @@ export default function useQuote() {
 		} else {
 			handleAddLineItem(product)
 		}
+
+		handleUpdateSubTotal()
+		handleUpdateTotal()
 	}
 
 	return {
@@ -79,5 +112,9 @@ export default function useQuote() {
 		handleUpdateItemQty,
 		handleUpdateItemUnitPrice,
 		handleUpdateItemTotal,
+		handleUpdateDiscounts,
+		handleUpdateTax,
+		handleUpdateSubTotal,
+		handleUpdateTotal,
 	}
 }

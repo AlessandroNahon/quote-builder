@@ -59,8 +59,22 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
 
 			return { ...quote, lineItems: updatedLineItems }
 		}
+		case 'updateSubTotal': {
+			const subtotal = quote.lineItems
+				.map((li: LineItemDataInterface) => li.totalPrice)
+				.reduce((partialSum: number, a: number) => partialSum + a, 0)
+
+			return { ...quote, subtotal: Number(subtotal) }
+		}
 		case 'updateTotal': {
-			return quote
+			const total = quote.subtotal - quote.discounts + quote.tax
+			return { ...quote, total: Number(total) }
+		}
+		case 'updateDiscounts': {
+			return { ...quote, discounts: action.discounts }
+		}
+		case 'updateTax': {
+			return { ...quote, tax: action.tax }
 		}
 		default: {
 			throw Error('Unknown action: ' + action.type)

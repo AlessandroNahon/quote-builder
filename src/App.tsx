@@ -7,14 +7,10 @@ import './App.css';
 import useQuote from './hooks/useQuote';
 
 function App() {
-  const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, handleUpdateItemTotal, handleSelectProduct } = useQuote()
+  const quoteData = useQuote()
 
   const store = {
-    quote,
-    handleUpdateItemQty,
-    handleUpdateItemUnitPrice,
-    handleUpdateItemTotal,
-    handleSelectProduct,
+    ...quoteData
   }
 
   return (

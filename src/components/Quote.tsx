@@ -5,8 +5,7 @@ import LineItem from './LineItem'
 import { LineItemDataInterface } from '../types'
 
 export default function Quote(): ReactElement {
-  const { quote } = useContext(AppContext)
-
+  const { quote, handleUpdateDiscounts, handleUpdateTax } = useContext(AppContext)
 
   return (
     <Browser>
@@ -20,9 +19,9 @@ export default function Quote(): ReactElement {
           <div className='spacer'></div>
           <p> Subtotal: ${quote.subtotal}</p>
           <label>Discounts</label>
-          <input type='number' />
+          <input type='number' name='discount' onChange={(e) => handleUpdateDiscounts!(Number(e.target.value))} />
           <label>Tax</label>
-          <input type='number' />
+          <input type='number' name='tax' onChange={(e) => handleUpdateTax!(Number(e.target.value))} />
           <div className='spacer'></div>
           <p>Total: ${quote.total}</p>
         </div>
