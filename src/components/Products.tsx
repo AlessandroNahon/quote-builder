@@ -1,6 +1,7 @@
 import { type ReactElement, useState, useContext } from 'react'
+
 import { ProductType } from '../types'
-import { Product } from '.'
+import { PopUpImage, Product } from '.'
 import Search from './Search'
 import AppContext from '../context/appContext'
 
@@ -14,6 +15,8 @@ function startsWithNumber(str: string) {
 
 export default function Products({ products }: Props): ReactElement {
   const [searchValue, setSearchValue] = useState('')
+  const [productInModal, setProductInModal] = useState<ProductType | null>(null)
+
   const { handleSelectProduct } = useContext(AppContext)
   if (products.length === 0) return <p>Nothing to see here</p>
 
@@ -30,10 +33,13 @@ export default function Products({ products }: Props): ReactElement {
       <ul>
         {searchProduct(products)?.map((product: ProductType) => (
           <li key={product.sku} onClick={() => handleSelectProduct!(product)}>
-            <Product product={product} />
+            <Product product={product} setProductInModal={setProductInModal} productInModal={productInModal!} />
           </li>
         ))}
       </ul>
+      {productInModal && productInModal?.url &&
+        <PopUpImage product={productInModal} setProductInModal={setProductInModal} />
+      }
     </section>
   )
 }

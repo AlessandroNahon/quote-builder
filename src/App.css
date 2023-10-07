@@ -12,6 +12,10 @@
 
 .quote {
   background-color: lightyellow;
+
+  & .zoom-in {
+    display: none;
+  } 
 }
 
 .quote-header {
@@ -84,7 +88,7 @@ ul {
   margin: 0;
   display: grid;
   grid-template-columns: 10em 10em 10em;
-  grid-gap: 10px;
+  grid-gap: 15px;
 
   & .product {
     cursor: pointer;
@@ -92,15 +96,20 @@ ul {
     border-radius: 8px;
     padding: 20px 10px;
     margin: 20px 0;
+    min-height: 100px;
     transition: 0.1s ease-out;
 
     &.selected {
-      background-color: lightpink;
-      border-color: lightpink;
+      background-color: rgba(255, 160, 122, 0.5);
+      border-color: lightseagreen;
     }
 
     &:hover {
       border-color: lightseagreen;
+
+      & .zoom-in {
+        display: block;
+      }
     }
   }
 }
@@ -116,12 +125,46 @@ ul {
 .product {
   & div {
     font-weight: 600;
+    margin-bottom: 10px;
   }
 
   & span {
     font-size: 12px;
     font-weight: 500;
   }
+}
+
+.product-image {
+  max-width: 100px;
+  height: 100px;
+  position: relative;
+  bottom: 0;
+  border-radius: 8px;
+}
+
+#portal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 25em;
+  height: 25em;
+  padding: 40px;
+  background-color: rgba(173, 216, 230, 0.5);
+  border-radius: 8px;
+}
+
+#portal-bg {
+  background-color: rgba(128, 128, 128, 0.5);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pop-up-img {
+  width: 25em;
 }
 
 .line-item {
@@ -131,6 +174,38 @@ ul {
 
 .line-item-data {
   margin-top: 10px;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.zoom-in {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 40px;
+  z-index: 1;
+  transition: 0.1s ease-out;
+  filter: invert(48%) sepia(50%) saturate(2006%) hue-rotate(120deg) brightness(80%) contrast(119%);
+  display: none;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.close {
+  cursor: pointer;
+  width: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: 0.1s ease-out;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 @media print {

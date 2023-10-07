@@ -2,6 +2,7 @@ export type ProductType = {
   id: number
   name: string
   sku: string
+  url?: string
 }
 
 export interface LineItemDataInterface extends ProductType {
