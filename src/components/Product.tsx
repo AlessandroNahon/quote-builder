@@ -5,6 +5,7 @@ import AppContext from '../context/appContext'
 import { toTitleCase } from '../utils'
 
 import ZoomInSvg from '../zoom.svg'
+import PictureSvg from '../picture.svg'
 
 interface Props {
   product: ProductType
@@ -19,16 +20,17 @@ export default function Product({ product, productInModal, setProductInModal }: 
 
   return (
     <div className={ok ? 'product selected' : 'product'} key={product.sku}>
-      {product?.url &&
-        <div className='image-wrapper'>
-          <img className='zoom-in' src={ZoomInSvg} alt='' onClick={(e) => {
+      <div className='image-wrapper'>
+        {
+          product?.url && <img className='zoom-in' src={ZoomInSvg} alt='' onClick={(e) => {
             e.stopPropagation()
             setProductInModal!(product)
           }} />
-          <div className='product-image' style={{
-            backgroundImage: `url("${product?.url}")`
-          }} />
-        </div>}
+        }
+        <div className={product?.url ? 'product-image' : 'product-image no-image'} style={{
+          backgroundImage: `url("${product?.url ? product?.url : PictureSvg}")`
+        }} />
+      </div>
       <div>{toTitleCase(product.name)}</div>
       <div><span>SKU: {product.sku}</span></div>
     </div>
