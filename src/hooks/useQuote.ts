@@ -89,7 +89,8 @@ export default function useQuote() {
 
   function handleSelectProduct(product: ProductType) {
     if (quote.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)) {
-      handleDeleteLineItem(product.id)
+      let value = prompt('Enter the product SKU to remove it from the quote', '')
+      if (value === product.sku) handleDeleteLineItem(product.id)
     } else {
       handleAddLineItem(product)
     }

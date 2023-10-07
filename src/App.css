@@ -72,12 +72,18 @@
   flex-direction: column;
   align-items: flex-end;
 
+  & label {
+    text-align: right;
+  }
+
   & input {
-    width: 15em;
+    max-width: 100px;
+    text-align: right;
   }
 }
 
 input {
+  max-width: 100px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
@@ -128,12 +134,10 @@ ul {
   }
 }
 
-#total {
-  & label {
-    display: inline-block;
-    min-width: 72px;
-    text-align: right;
-  }
+label {
+  display: inline-block;
+  min-width: 72px;
+  text-align: left;
 }
 
 .product {

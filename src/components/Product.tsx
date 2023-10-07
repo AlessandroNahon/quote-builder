@@ -13,7 +13,7 @@ interface Props {
   productInModal?: ProductType
 }
 
-export default function Product({ product, productInModal, setProductInModal }: Props): ReactElement {
+export default function Product({ product, setProductInModal }: Props): ReactElement {
 
   const { quote } = useContext(AppContext)
   const ok = quote.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
