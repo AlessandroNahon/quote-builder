@@ -39,7 +39,7 @@ export default function Quote(): ReactElement {
             <LineItem key={item.sku} item={item} />
           ))}
           <div id="total">
-            <p> Subtotal: ${convertToCurrency(quote.subtotal, 'CAD')}</p>
+            <p> Subtotal: {convertToCurrency(quote.subtotal, 'CAD')}</p>
             <span>
               <input
                 type="number"
@@ -58,7 +58,7 @@ export default function Quote(): ReactElement {
             </span>
 
             <div className="spacer"></div>
-            <p>Total: ${quote.total > 0 ? convertToCurrency(quote.total, 'CAD') : 0}</p>
+            <p>Total: {quote.total > 0 ? convertToCurrency(quote.total, 'CAD') : 0}</p>
           </div>
         </>
       )}

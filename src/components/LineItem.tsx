@@ -27,12 +27,16 @@ export default function LineItem({ item }: Props): ReactElement {
     <div className="line-item">
       <Product product={item} />
       <div className="line-item-data">
-        <label>Quantity</label>
-        <input type="number" onChange={handleQtyInput} />
-        <label>Unit Price</label>
-        {'$'}
-        <input type="text" onChange={handleUnitPriceInput} />
-        <p>Unit Total: ${convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>
+        <span>
+          <label>Quantity</label>
+          <input type="number" onChange={handleQtyInput} />
+        </span>
+        <span>
+          <label>Unit Price</label>
+          <input type="text" onChange={handleUnitPriceInput} />
+        </span>
+
+        <p>Unit Total: {convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>
       </div>
     </div>
   )
