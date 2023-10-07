@@ -7,7 +7,7 @@ const initialArg = {
 	tax: 0,
 	subtotal: 0,
 	discounts: 0,
-	total: 0,
+	total: 0
 }
 
 export default function useQuote() {
@@ -21,44 +21,38 @@ export default function useQuote() {
 				quantity: 0,
 				unitPrice: 0,
 				totalPrice: 0,
-				total: 0,
-			},
+				total: 0
+			}
 		})
 	}
 
 	function handleDeleteLineItem(itemId: number) {
 		dispatch({
 			type: 'removeLineItem',
-			id: itemId,
+			id: itemId
 		})
 	}
 
-	function handleUpdateItemQty(
-		lineItem: LineItemDataInterface,
-		quantity: number
-	) {
+	function handleUpdateItemQty(lineItem: LineItemDataInterface, quantity: number) {
 		dispatch({
 			...lineItem,
 			type: 'updateItemQuantity',
-			quantity,
+			quantity
 		})
 	}
 
-	function handleUpdateItemUnitPrice(
-		lineItem: LineItemDataInterface,
-		unitPrice: number
-	) {
+	function handleUpdateItemUnitPrice(lineItem: LineItemDataInterface, unitPrice: number) {
 		dispatch({
 			...lineItem,
 			type: 'updateItemUnitPrice',
-			unitPrice,
+			unitPrice
 		})
 	}
 
 	function handleUpdateItemTotal(id: number) {
 		dispatch({
 			type: 'updateItemTotal',
-			id,
+			id
 		})
 
 		handleUpdateSubTotal()
@@ -66,7 +60,7 @@ export default function useQuote() {
 
 	function handleUpdateSubTotal() {
 		dispatch({
-			type: 'updateSubTotal',
+			type: 'updateSubTotal'
 		})
 		handleUpdateTotal()
 	}
@@ -74,7 +68,7 @@ export default function useQuote() {
 	function handleUpdateDiscounts(discounts: number) {
 		dispatch({
 			type: 'updateDiscounts',
-			discounts,
+			discounts
 		})
 		handleUpdateTotal()
 	}
@@ -82,21 +76,19 @@ export default function useQuote() {
 	function handleUpdateTax(tax: number) {
 		dispatch({
 			type: 'updateTax',
-			tax,
+			tax
 		})
 		handleUpdateTotal()
 	}
 
 	function handleUpdateTotal() {
 		dispatch({
-			type: 'updateTotal',
+			type: 'updateTotal'
 		})
 	}
 
 	function handleSelectProduct(product: ProductType) {
-		if (
-			quote.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)
-		) {
+		if (quote.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)) {
 			handleDeleteLineItem(product.id)
 		} else {
 			handleAddLineItem(product)
@@ -115,6 +107,6 @@ export default function useQuote() {
 		handleUpdateDiscounts,
 		handleUpdateTax,
 		handleUpdateSubTotal,
-		handleUpdateTotal,
+		handleUpdateTotal
 	}
 }

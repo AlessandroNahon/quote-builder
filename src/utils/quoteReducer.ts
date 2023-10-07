@@ -9,18 +9,13 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
 			)
 				return quote
 
-			const updatedLineItems: LineItemDataInterface[] = [
-				...quote?.lineItems,
-				action.lineItem,
-			]
+			const updatedLineItems: LineItemDataInterface[] = [...quote?.lineItems, action.lineItem]
 			return { ...quote, lineItems: updatedLineItems }
 		}
 		case 'removeLineItem': {
 			return {
 				...quote,
-				lineItems: quote.lineItems.filter(
-					(p: LineItemDataInterface) => p.id !== action.id
-				),
+				lineItems: quote.lineItems.filter((p: LineItemDataInterface) => p.id !== action.id)
 			}
 		}
 		case 'updateItemQuantity': {
@@ -50,7 +45,7 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
 				if (li.id === action.id) {
 					return {
 						...li,
-						totalPrice: Number(li.unitPrice) * Number(li.quantity),
+						totalPrice: Number(li.unitPrice) * Number(li.quantity)
 					}
 				} else {
 					return li
