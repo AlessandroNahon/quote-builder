@@ -56,7 +56,7 @@
 }
 
 .products {
-  background-color: rgba(255, 160, 122, 0.5);
+  background-color: #BABD8D;
 }
 
 .spacer {
@@ -94,11 +94,25 @@ ul {
 
   & .product {
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 8px;
     padding: 20px 10px 0 10px;
     min-height: 175px;
     transition: 0.1s ease-out;
+
+    &.selected {
+        background-color: #FFE0BA;
+        border-color: #FFE0BA;
+      }
+    
+      &:hover {
+        background-color: #FFE0BA;
+        border-color: #FFE0BA;
+    
+        & .zoom-in {
+          display: block;
+        }
+      }
 
     & .product-image {
         position: relative;
@@ -110,19 +124,6 @@ ul {
 
     & .no-image {
       background-size: contain;
-    }
-
-    &.selected {
-      background-color: rgba(255, 160, 122, 0.5);
-      border-color: lightseagreen;
-    }
-
-    &:hover {
-      border-color: lightseagreen;
-
-      & .zoom-in {
-        display: block;
-      }
     }
   }
 }
@@ -151,10 +152,10 @@ ul {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 158px;
-  height: 100px;
+  width: 156px;
+  height: 156px;
   position: relative;
-  bottom: 0;
+  top: -1px;
 }
 
 #portal {
@@ -207,9 +208,11 @@ ul {
   max-width: 40px;
   z-index: 1;
   transition: 0.1s ease-out;
-  filter: invert(75%) sepia(100%) saturate(5000%) hue-rotate(275deg) brightness(80%) contrast(100%);
-  display: none;
 
+  display: none;
+  & svg {
+    fill: red;
+  }
   &:hover {
     transform: scale(1.05);
   }
