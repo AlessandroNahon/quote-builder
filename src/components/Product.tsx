@@ -19,15 +19,17 @@ export default function Product({ product, productInModal, setProductInModal }: 
 
   return (
     <div className={ok ? 'product selected' : 'product'} key={product.sku}>
-      <div>{toTitleCase(product.name)}</div>
       {product?.url &&
         <div className='image-wrapper'>
           <img className='zoom-in' src={ZoomInSvg} alt='' onClick={(e) => {
             e.stopPropagation()
             setProductInModal!(product)
           }} />
-          <img className='product-image' src={product?.url} alt={product.name} />
+          <div className='product-image' style={{
+            backgroundImage: `url("${product?.url}")`
+          }} />
         </div>}
+      <div>{toTitleCase(product.name)}</div>
       <div><span>SKU: {product.sku}</span></div>
     </div>
   )
