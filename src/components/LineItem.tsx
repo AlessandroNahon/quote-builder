@@ -4,12 +4,14 @@ import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
 import { convertToCurrency } from '../utils'
 
+import CloseSvg from '../trash.svg'
+
 interface Props {
   item: ProductType
 }
 
 export default function LineItem({ item }: Props): ReactElement {
-  const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, handleUpdateItemTotal } =
+  const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, handleUpdateItemTotal, handleSelectProduct } =
     useContext(AppContext)
   const lineItem: any = quote?.lineItems.find((li: LineItemDataInterface) => li.id === item.id)
 
@@ -25,6 +27,7 @@ export default function LineItem({ item }: Props): ReactElement {
 
   return (
     <div className="line-item">
+      <img className='list-item-delete' src={CloseSvg} alt='remove' onClick={() => handleSelectProduct!(lineItem)} />
       <Product product={item} />
       <div className="line-item-data">
         <span>

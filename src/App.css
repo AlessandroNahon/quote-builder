@@ -190,6 +190,7 @@ label {
 }
 
 .line-item {
+  position: relative;
   display: flex;
   background-color: lightgoldenrodyellow;
   padding: 10px 20px;
@@ -198,6 +199,20 @@ label {
       background-size: contain;
       background-position: center left;
     }
+}
+
+.list-item-delete {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  margin: 10px 20px;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(300deg) brightness(100%) contrast(200%);
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .line-item-data {
