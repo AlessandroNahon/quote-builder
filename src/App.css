@@ -1,14 +1,22 @@
-#browser {
-  padding: 20px;
-  overflow-y: scroll;
-  transition: 0.3s ease-out;
+#quote-builder {
+  display: flex;
+  height: 100vh;
 
-  &:hover {
-    &.quote {
-      padding: 20px 100px;
+  & #browser {
+      padding: 20px;
+      overflow-y: scroll;
+      transition: 0.3s ease-out;
+      width: 50em;
+  
+      /* &:hover {
+        &.quote {
+          padding: 20px 100px;
+        }
+      } */
     }
-  }
 }
+
+
 
 .quote {
   background-color: lightyellow;
@@ -43,15 +51,6 @@
           contrast(119%);
       }
     }
-  }
-}
-
-#quote-builder {
-  display: flex;
-  height: 100vh;
-
-  & #browser {
-    width: 50em;
   }
 }
 
