@@ -7,19 +7,19 @@ import './App.css'
 import useQuote from './hooks/useQuote'
 
 function App() {
-	const quoteData = useQuote()
+  const quoteData = useQuote()
 
-	const store = {
-		...quoteData
-	}
+  const store = {
+    ...quoteData
+  }
 
-	return (
-		<AppContext.Provider value={store}>
-			<div className="App">
-				<QuoteBuilder />
-			</div>
-		</AppContext.Provider>
-	)
+  return (
+    <AppContext.Provider value={store}>
+      <div className="App">
+        <QuoteBuilder />
+      </div>
+    </AppContext.Provider>
+  )
 }
 
 export default App

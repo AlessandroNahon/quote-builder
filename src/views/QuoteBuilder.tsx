@@ -4,10 +4,10 @@ import { Quote, Products } from '../components'
 import { products } from '../data'
 
 export default function QuoteBuilder(): ReactElement {
-	return (
-		<main id="quote-builder">
-			<Products products={products} />
-			<Quote />
-		</main>
-	)
+  return (
+    <main id="quote-builder">
+      <Products products={products} />
+      <Quote />
+    </main>
+  )
 }
