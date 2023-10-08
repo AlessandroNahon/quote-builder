@@ -77,6 +77,12 @@
 
 .products {
   background-color: #BABD8D;
+
+  &:hover {
+    & .product-image::before {
+      background-color: transparent;
+    }
+  }
 }
 
 .spacer {
@@ -122,7 +128,7 @@ ul {
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 8px;
-    padding: 20px 10px 0 10px;
+    padding: 20px 10px 10px 10px;
     min-height: 175px;
     transition: 0.1s ease-out;
 
@@ -140,10 +146,6 @@ ul {
         & .zoom-in {
           display: block;
         }
-
-        & .product-image::before {
-          background-color: transparent;
-        }
       }
 
     & .product-image {
@@ -160,7 +162,7 @@ ul {
           left: 0;
           width: 212px;
           height: 156px;
-          background-color: rgba(59, 51, 85, 0.35);
+          background-color: rgba(59, 51, 85, 0.5);
           border-top-right-radius: 8px;
           border-top-left-radius: 8px;
           transition: 0.1s ease-out;
@@ -182,7 +184,6 @@ label {
 .product {
   & div {
     font-weight: 600;
-    margin-bottom: 5px;
   }
 
   & span {
@@ -237,7 +238,7 @@ label {
 .list-item-delete {
   position: absolute;
   right: 0;
-  width: 40px;
+  width: 30px;
   margin: 10px 20px;
   cursor: pointer;
   transition: 0.1s ease-out;
@@ -265,11 +266,9 @@ label {
   max-width: 40px;
   z-index: 1;
   transition: 0.1s ease-out;
-
   display: none;
-  & svg {
-    fill: red;
-  }
+  filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(300deg) brightness(100%) contrast(200%);
+
   &:hover {
     transform: scale(1.05);
   }
