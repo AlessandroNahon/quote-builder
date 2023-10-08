@@ -28,8 +28,11 @@ export default function Products({ products }: Props): ReactElement {
 
   return (
     <section id="browser" className="products">
-      <h2>Products</h2>
-      <Search placeholder="Search products" setSearchValue={setSearchValue} />
+      <span className='browser-header'>
+        <h2>Products</h2>
+        <Search placeholder="Search products" setSearchValue={setSearchValue} />
+      </span>
+
       <ul>
         {searchProduct(products)?.map((product: ProductType) => (
           <li key={product.sku} onClick={() => handleSelectProduct!(product)}>

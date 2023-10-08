@@ -24,7 +24,7 @@ export default function Quote(): ReactElement {
 
   return (
     <section id="browser" className="quote" ref={ref}>
-      <span className="quote-header">
+      <span className="browser-header">
         <h2>Quote</h2>
         {quote.lineItems.length > 0 && (
           <button onClick={saveQuote}>

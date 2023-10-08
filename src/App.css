@@ -26,10 +26,31 @@
   } 
 }
 
-.quote-header {
+.product-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 212px;
+  height: 156px;
+  position: relative;
+  top: -1px;
+}
+
+.browser-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & input {
+    font-size: 16px;
+    min-width: 200px;
+    padding-bottom: 5px;
+  }
+
+  & input::placeholder {
+      color: #3B3355;
+      font-weight: 500;
+  }
 
   & button {
     font-size: 16px;
@@ -119,6 +140,10 @@ ul {
         & .zoom-in {
           display: block;
         }
+
+        & .product-image::before {
+          background-color: transparent;
+        }
       }
 
     & .product-image {
@@ -127,6 +152,19 @@ ul {
         top: -20px;
         border-top-right-radius: 8px;
         border-top-left-radius: 8px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 212px;
+          height: 156px;
+          background-color: rgba(59, 51, 85, 0.35);
+          border-top-right-radius: 8px;
+          border-top-left-radius: 8px;
+          transition: 0.1s ease-out;
+        }
     }
 
     & .no-image {
@@ -153,16 +191,6 @@ label {
   }
 }
 
-.product-image {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 212px;
-  height: 156px;
-  position: relative;
-  top: -1px;
-}
-
 #portal {
   position: absolute;
   left: 0;
@@ -175,6 +203,7 @@ label {
   padding: 40px;
   background-color: rgba(11, 3, 45, 0.75);
   border-radius: 8px;
+  z-index: 1000;
 }
 
 #portal-bg {
@@ -192,7 +221,12 @@ label {
   position: relative;
   display: flex;
   background-color: lightgoldenrodyellow;
-  padding: 10px 20px;
+  padding: 20px;
+
+  & .product-image {
+    max-width: 150px;
+    max-height: 100px;
+  }
 
   & .no-image {
       background-size: contain;
