@@ -37,6 +37,7 @@ export default function LineItem({ item }: Props): ReactElement {
         src={CloseSvg}
         alt='remove'
         onClick={() => handleSelectProduct!(lineItem)}
+        loading='eager'
       />
       <Product product={item} />
       <div className='line-item-data'>

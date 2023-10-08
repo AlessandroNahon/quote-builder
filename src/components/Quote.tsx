@@ -28,7 +28,7 @@ export default function Quote(): ReactElement {
         <h2>Quote</h2>
         {quote.lineItems.length > 0 && (
           <button onClick={saveQuote}>
-            <img className='download' src={DownloadSvg} alt='download button' />
+            <img className='download' src={DownloadSvg} alt='download button' loading='eager' />
           </button>
         )}
       </span>
