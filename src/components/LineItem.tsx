@@ -31,23 +31,23 @@ export default function LineItem({ item }: Props): ReactElement {
   }
 
   return (
-    <div className='line-item'>
+    <div className="line-item">
       <img
-        className='list-item-delete'
+        className="list-item-delete"
         src={CloseSvg}
-        alt='remove'
+        alt="remove"
         onClick={() => handleSelectProduct!(lineItem)}
-        loading='eager'
+        loading="eager"
       />
       <Product product={item} />
-      <div className='line-item-data'>
+      <div className="line-item-data">
         <span>
           <label>Qty</label>
-          <input type='number' onChange={handleQtyInput} />
+          <input type="number" onChange={handleQtyInput} />
         </span>
         <span>
           <label>Unit Price</label>
-          <input type='text' onChange={handleUnitPriceInput} />
+          <input type="text" onChange={handleUnitPriceInput} />
         </span>
 
         <p>Unit Total: {convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>

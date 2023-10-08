@@ -1,7 +1,7 @@
-import { createContext } from 'react'
+import { Dispatch, SetStateAction, createContext } from 'react'
 import { LineItemDataInterface, ProductType, QuoteType } from '../types'
 
-interface AppContextInterface {
+export interface AppContextInterface {
   handleSelectProduct: ((product: ProductType) => void) | null
   quote: QuoteType
   handleUpdateItemQty: ((lineItem: LineItemDataInterface, quantity: number) => void) | null
@@ -11,6 +11,8 @@ interface AppContextInterface {
   handleUpdateTotal: (() => void) | null
   handleUpdateDiscounts: ((discounts: number) => void) | null
   handleUpdateTax: ((tax: number) => void) | null
+  setSearchValue: Dispatch<SetStateAction<string>>
+  searchValue: string
 }
 
 const defaultState: AppContextInterface = {
@@ -28,7 +30,9 @@ const defaultState: AppContextInterface = {
   handleUpdateSubTotal: null,
   handleUpdateTotal: null,
   handleUpdateDiscounts: null,
-  handleUpdateTax: null
+  handleUpdateTax: null,
+  setSearchValue: () => null,
+  searchValue: ''
 }
 
 const AppContext = createContext(defaultState)

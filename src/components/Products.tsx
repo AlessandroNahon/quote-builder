@@ -1,9 +1,9 @@
-import { type ReactElement, useState, useContext } from 'react'
+import { type ReactElement, useState, useContext, useRef } from 'react'
 
 import { ProductType } from '../types'
 import { PopUpImage, Product } from '.'
 import Search from './Search'
-import AppContext from '../context/appContext'
+import AppContext, { AppContextInterface } from '../context/appContext'
 
 interface Props {
   products: ProductType[]
@@ -14,33 +14,44 @@ function startsWithNumber(str: string) {
 }
 
 export default function Products({ products }: Props): ReactElement {
-  const [searchValue, setSearchValue] = useState('')
+  const formRef = useRef(null)
   const [productInModal, setProductInModal] = useState<ProductType | null>(null)
+  const { handleSelectProduct, searchValue, setSearchValue } =
+    useContext<AppContextInterface>(AppContext)
 
-  const { handleSelectProduct } = useContext(AppContext)
   if (products.length === 0) return <p>Nothing to see here</p>
 
-  function searchProduct(products: ProductType[]) {
+  function filterProductsBySearchValue(products: ProductType[]): ProductType[] {
     if (startsWithNumber(searchValue)) return products.filter((p) => p.sku.includes(searchValue))
-
     return products.filter((p) => p.name.toLowerCase().includes(searchValue.toLowerCase()))
   }
 
+  function selectProduct(product: ProductType): void {
+    handleSelectProduct!(product)
+    setSearchValue('')
+
+    let form: any = formRef.current
+
+    if (form) form.reset()
+  }
+
   return (
-    <section id='browser' className='products'>
-      <span className='browser-header'>
+    <section id="browser" className="products">
+      <span className="browser-header">
         <h2>Products</h2>
-        <Search placeholder='Search products' setSearchValue={setSearchValue} />
+        <form ref={formRef}>
+          <Search placeholder="Search products" setSearchValue={setSearchValue} />
+        </form>
       </span>
 
       <ul>
-        {searchProduct(products)?.map((product: ProductType, index: number) => (
+        {filterProductsBySearchValue(products)?.map((product: ProductType, index: number) => (
           <li
-            role='button'
+            role="button"
             tabIndex={0}
             key={product.sku}
-            onClick={() => handleSelectProduct!(product)}
-            onKeyUp={(e) => e.code === 'Enter' && handleSelectProduct!(product)}
+            onClick={() => selectProduct(product)}
+            onKeyUp={(e) => e.code === 'Enter' && selectProduct(product)}
           >
             <Product
               product={product}

@@ -11,16 +11,16 @@ export default function PopUpImage({ product, setProductInModal }: PopUpProp) {
   const container = document.getElementById('quote-builder')
 
   return createPortal(
-    <div id='portal-bg' onClick={() => setProductInModal!(null)}>
-      <div id='portal'>
+    <div id="portal-bg" onClick={() => setProductInModal!(null)}>
+      <div id="portal">
         <img
-          className='close'
+          className="close"
           src={CloseSvg}
-          alt='close modal'
+          alt="close modal"
           onClick={() => setProductInModal!(null)}
-          loading='eager'
+          loading="eager"
         />
-        <img className='pop-up-img' src={product?.url} alt={product.name} loading='eager' />
+        <img className="pop-up-img" src={product?.url} alt={product.name} loading="eager" />
       </div>
     </div>,
     container as Element

@@ -20,17 +20,17 @@ export default function Product({ product, setProductInModal }: Props): ReactEle
 
   return (
     <div className={ok ? 'product selected' : 'product'} key={product.sku}>
-      <div className='image-wrapper'>
+      <div className="image-wrapper">
         {product?.url && (
           <img
-            className='zoom-in'
+            className="zoom-in"
             src={ZoomInSvg}
-            alt=''
+            alt=""
             onClick={(e) => {
               e.stopPropagation()
               setProductInModal!(product)
             }}
-            loading='eager'
+            loading="eager"
           />
         )}
         <div
@@ -49,7 +49,6 @@ export default function Product({ product, setProductInModal }: Props): ReactEle
 }
 
 function useProgressiveImage(src: string) {
-
   const [sourceLoaded, setSourceLoaded] = useState<string | null>(null)
 
   useEffect(() => {

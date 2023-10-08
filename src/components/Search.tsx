@@ -7,6 +7,6 @@ interface Props {
 
 export default function Search({ placeholder, setSearchValue }: Props): ReactElement {
   return (
-    <input type='text' placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)} />
+    <input type="text" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)} />
   )
 }
