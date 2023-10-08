@@ -125,16 +125,18 @@ ul {
     padding: 20px 10px 10px 10px;
     min-height: 175px;
     transition: 0.1s ease-out;
+    background-color: rgba(224, 230, 255, 0.15);
+    box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.15);
 
     &.selected {
-      background-color: #ffe0ba;
-      border-color: #ffe0ba;
+      background-color: #fffaba85;
+      border-color: #fffaba85;
       box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.5);
     }
 
     &:hover {
-      background-color: #ffe0ba;
-      border-color: #ffe0ba;
+      background-color: #fffaba85;
+      border-color: #fffaba85;
       box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.25);
 
       & .zoom-in {
@@ -261,7 +263,7 @@ label {
   z-index: 1;
   transition: 0.1s ease-out;
   display: none;
-  filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(300deg) brightness(100%) contrast(200%);
+  filter: invert(50%) sepia(90%) saturate(200%) hue-rotate(90deg) brightness(100%) contrast(90%);
 
   &:hover {
     transform: scale(1.05);
