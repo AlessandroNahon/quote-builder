@@ -23,12 +23,12 @@ export default function Quote(): ReactElement {
   }
 
   return (
-    <section id="browser" className="quote" ref={ref}>
-      <span className="browser-header">
+    <section id='browser' className='quote' ref={ref}>
+      <span className='browser-header'>
         <h2>Quote</h2>
         {quote.lineItems.length > 0 && (
           <button onClick={saveQuote}>
-            <img className="download" src={DownloadSvg} alt="download button" />
+            <img className='download' src={DownloadSvg} alt='download button' />
           </button>
         )}
       </span>
@@ -38,26 +38,26 @@ export default function Quote(): ReactElement {
           {quote.lineItems?.map((item: LineItemDataInterface) => (
             <LineItem key={item.sku} item={item} />
           ))}
-          <div id="total">
+          <div id='total'>
             <p> Subtotal: {convertToCurrency(quote.subtotal, 'CAD')}</p>
             <span>
               <input
-                type="number"
-                name="discounts"
+                type='number'
+                name='discounts'
                 onChange={(e) => handleUpdateDiscounts!(Number(e.target.value))}
               />
               <label>Discounts</label>
             </span>
             <span>
               <input
-                type="number"
-                name="tax"
+                type='number'
+                name='tax'
                 onChange={(e) => handleUpdateTax!(Number(e.target.value))}
               />
               <label>Tax</label>
             </span>
 
-            <div className="spacer"></div>
+            <div className='spacer'></div>
             <p>Total: {quote.total > 0 ? convertToCurrency(quote.total, 'CAD') : 0}</p>
           </div>
         </>

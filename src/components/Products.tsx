@@ -27,22 +27,31 @@ export default function Products({ products }: Props): ReactElement {
   }
 
   return (
-    <section id="browser" className="products">
+    <section id='browser' className='products'>
       <span className='browser-header'>
         <h2>Products</h2>
-        <Search placeholder="Search products" setSearchValue={setSearchValue} />
+        <Search placeholder='Search products' setSearchValue={setSearchValue} />
       </span>
 
       <ul>
-        {searchProduct(products)?.map((product: ProductType) => (
-          <li key={product.sku} onClick={() => handleSelectProduct!(product)}>
-            <Product product={product} setProductInModal={setProductInModal} productInModal={productInModal!} />
+        {searchProduct(products)?.map((product: ProductType, index: number) => (
+          <li
+            role='button'
+            tabIndex={index}
+            key={product.sku}
+            onClick={() => handleSelectProduct!(product)}
+          >
+            <Product
+              product={product}
+              setProductInModal={setProductInModal}
+              productInModal={productInModal!}
+            />
           </li>
         ))}
       </ul>
-      {productInModal && productInModal?.url &&
+      {productInModal && productInModal?.url && (
         <PopUpImage product={productInModal} setProductInModal={setProductInModal} />
-      }
+      )}
     </section>
   )
 }

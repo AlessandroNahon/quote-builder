@@ -15,7 +15,7 @@ function App() {
 
   return (
     <AppContext.Provider value={store}>
-      <div className="App">
+      <div className='App'>
         <QuoteBuilder />
       </div>
     </AppContext.Provider>

@@ -11,8 +11,13 @@ interface Props {
 }
 
 export default function LineItem({ item }: Props): ReactElement {
-  const { quote, handleUpdateItemQty, handleUpdateItemUnitPrice, handleUpdateItemTotal, handleSelectProduct } =
-    useContext(AppContext)
+  const {
+    quote,
+    handleUpdateItemQty,
+    handleUpdateItemUnitPrice,
+    handleUpdateItemTotal,
+    handleSelectProduct
+  } = useContext(AppContext)
   const lineItem: any = quote?.lineItems.find((li: LineItemDataInterface) => li.id === item.id)
 
   function handleQtyInput(e: any) {
@@ -26,17 +31,22 @@ export default function LineItem({ item }: Props): ReactElement {
   }
 
   return (
-    <div className="line-item">
-      <img className='list-item-delete' src={CloseSvg} alt='remove' onClick={() => handleSelectProduct!(lineItem)} />
+    <div className='line-item'>
+      <img
+        className='list-item-delete'
+        src={CloseSvg}
+        alt='remove'
+        onClick={() => handleSelectProduct!(lineItem)}
+      />
       <Product product={item} />
-      <div className="line-item-data">
+      <div className='line-item-data'>
         <span>
           <label>Qty</label>
-          <input type="number" onChange={handleQtyInput} />
+          <input type='number' onChange={handleQtyInput} />
         </span>
         <span>
           <label>Unit Price</label>
-          <input type="text" onChange={handleUnitPriceInput} />
+          <input type='text' onChange={handleUnitPriceInput} />
         </span>
 
         <p>Unit Total: {convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>
