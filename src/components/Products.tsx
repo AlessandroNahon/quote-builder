@@ -37,7 +37,7 @@ export default function Products({ products }: Props): ReactElement {
         {searchProduct(products)?.map((product: ProductType, index: number) => (
           <li
             role='button'
-            tabIndex={index}
+            tabIndex={0}
             key={product.sku}
             onClick={() => handleSelectProduct!(product)}
           >
