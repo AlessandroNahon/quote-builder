@@ -40,6 +40,7 @@ export default function Products({ products }: Props): ReactElement {
             tabIndex={0}
             key={product.sku}
             onClick={() => handleSelectProduct!(product)}
+            onKeyUp={(e) => e.code === 'Enter' && handleSelectProduct!(product)}
           >
             <Product
               product={product}

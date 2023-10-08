@@ -32,7 +32,7 @@ export default function Quote(): ReactElement {
           </button>
         )}
       </span>
-      {quote.lineItems.length === 0 && <h3>Select a product.</h3>}
+      {quote.lineItems.length === 0 && <h3>Select a product to start a quote.</h3>}
       {quote.lineItems.length > 0 && (
         <>
           {quote.lineItems?.map((item: LineItemDataInterface) => (

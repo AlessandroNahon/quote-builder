@@ -5,7 +5,7 @@
   & #browser {
     padding: 20px;
     overflow-y: scroll;
-    transition: 0.3s ease-out;
+    transition: 0.1s ease-out;
     width: 50em;
   }
 }
@@ -132,6 +132,10 @@ ul {
       background-color: #fffaba85;
       border-color: #fffaba85;
       box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.5);
+
+      & .product-image::before {
+        background-color: transparent;
+      }
     }
 
     &:hover {
