@@ -87,9 +87,16 @@ export default function useQuote() {
   }
 
   function handleSelectProduct(product: ProductType) {
+    const item: LineItemDataInterface | undefined = quote.lineItems?.find(
+      (p: LineItemDataInterface) => p.id === product.id
+    )
+
     if (quote.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)) {
-      const value = prompt('Enter the product SKU to remove it from the quote', '')
-      if (value === product.sku) handleDeleteLineItem(product.id)
+      if (item?.quantity || item?.totalPrice || item?.unitPrice) {
+        const value = prompt('Enter the product SKU to remove it from the quote', '')
+        if (value === product.sku) handleDeleteLineItem(product.id)
+      }
+      handleDeleteLineItem(product.id)
     } else {
       handleAddLineItem(product)
     }
