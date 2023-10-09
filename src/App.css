@@ -1,11 +1,11 @@
 @keyframes drawCheckmark {
   0% {
-    stroke-dasharray: 96 96;
-    stroke-dashoffset: 96;
+    stroke-dasharray: 50 50;
+    stroke-dashoffset: 50;
   }
 
   100% {
-    stroke-dasharray: 96 0;
+    stroke-dasharray: 50 0;
     stroke-dashoffset: 0;
   }
 }

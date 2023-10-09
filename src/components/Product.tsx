@@ -50,8 +50,8 @@ export default function Product({ product, setProductInModal }: Props): ReactEle
           fill="none"
           stroke="#4CAF50"
           strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeLinecap='square'
+          strokeLinejoin='miter'
         >
           <path d="M6.75 12.5l3.25 3.25L16.5 9" />
         </svg>
