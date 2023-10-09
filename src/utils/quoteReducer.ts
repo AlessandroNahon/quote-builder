@@ -1,15 +1,26 @@
 import { LineItemDataInterface, QuoteInterface } from '../types'
 
-export default function quoteReducer(quote: QuoteInterface, action: any) {
+type QuoteActionType =
+  | { type: 'addLineItem'; lineItem: LineItemDataInterface }
+  | { type: 'removeLineItem'; id: number }
+  | { type: 'updateItemQuantity'; quantity: number; id: number }
+  | { type: 'updateItemUnitPrice'; unitPrice: number; id: number }
+  | { type: 'updateItemTotal'; id: number }
+  | { type: 'updateSubTotal' }
+  | { type: 'updateDiscounts'; discounts: number }
+  | { type: 'updateTax'; tax: number }
+  | { type: 'updateTotal' }
+
+export default function quoteReducer(quote: QuoteInterface, action: QuoteActionType) {
   switch (action.type) {
     case 'addLineItem': {
       if (
         quote.lineItems?.length > 0 &&
-        quote.lineItems?.some((p: LineItemDataInterface) => p.id === action.id)
+        quote.lineItems?.some((p: LineItemDataInterface) => p.id === action.lineItem.id)
       )
         return quote
 
-      const updatedLineItems: LineItemDataInterface[] = [...quote?.lineItems, action.lineItem]
+      const updatedLineItems: LineItemDataInterface[] = [...quote.lineItems, action.lineItem]
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'removeLineItem': {
@@ -19,7 +30,7 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
       }
     }
     case 'updateItemQuantity': {
-      const updatedLineItems = quote.lineItems.map((li: any) => {
+      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return { ...li, quantity: Number(action.quantity) }
         } else {
@@ -30,7 +41,7 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemUnitPrice': {
-      const updatedLineItems = quote.lineItems.map((li: any) => {
+      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return { ...li, unitPrice: Number(action.unitPrice) }
         } else {
@@ -41,7 +52,7 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemTotal': {
-      const updatedLineItems = quote.lineItems.map((li: any) => {
+      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return {
             ...li,
@@ -72,7 +83,7 @@ export default function quoteReducer(quote: QuoteInterface, action: any) {
       return { ...quote, tax: action.tax }
     }
     default: {
-      throw Error('Unknown action: ' + action.type)
+      throw Error('Unknown action')
     }
   }
 }

@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react'
+import React, { type ReactElement } from 'react'
 
 import { Quote, Products } from '../components'
 import { products } from '../data'

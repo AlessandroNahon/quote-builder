@@ -1,4 +1,4 @@
-import { useContext, type ReactElement } from 'react'
+import React, { useContext, type ReactElement } from 'react'
 import Product from './Product'
 import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
@@ -18,16 +18,26 @@ export default function LineItem({ item }: Props): ReactElement {
     handleUpdateItemTotal,
     handleSelectProduct
   } = useContext(AppContext)
-  const lineItem: any = quote?.lineItems.find((li: LineItemDataInterface) => li.id === item.id)
 
-  function handleQtyInput(e: any) {
-    handleUpdateItemQty!(lineItem, e.target.value)
-    handleUpdateItemTotal!(lineItem.id)
+  const lineItem: LineItemDataInterface = quote?.lineItems.find(
+    (li: LineItemDataInterface) => li.id === item.id
+  ) || {
+    quantity: 0,
+    unitPrice: 0,
+    totalPrice: 0,
+    id: 0,
+    name: '',
+    sku: ''
   }
 
-  function handleUnitPriceInput(e: any) {
-    handleUpdateItemUnitPrice!(lineItem, e.target.value)
-    handleUpdateItemTotal!(lineItem.id)
+  function handleQtyInput(e: React.ChangeEvent<HTMLInputElement>) {
+    handleUpdateItemQty(lineItem, Number(e.target.value))
+    handleUpdateItemTotal(lineItem.id)
+  }
+
+  function handleUnitPriceInput(e: React.ChangeEvent<HTMLInputElement>) {
+    handleUpdateItemUnitPrice(lineItem, Number(e.target.value))
+    handleUpdateItemTotal(lineItem.id)
   }
 
   return (
@@ -36,7 +46,7 @@ export default function LineItem({ item }: Props): ReactElement {
         className="list-item-delete"
         src={CloseSvg}
         alt="remove"
-        onClick={() => handleSelectProduct!(lineItem)}
+        onClick={() => handleSelectProduct(lineItem)}
         loading="eager"
       />
       <Product product={item} />

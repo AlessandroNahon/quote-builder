@@ -1,4 +1,4 @@
-import { useContext, type ReactElement, useRef } from 'react'
+import React, { useContext, type ReactElement, useRef } from 'react'
 
 import AppContext from '../context/appContext'
 import LineItem from './LineItem'
@@ -7,19 +7,22 @@ import DownloadSvg from '../download.svg'
 import { convertToCurrency } from '../utils'
 
 export default function Quote(): ReactElement {
-  const ref = useRef<any>()
+  const ref = useRef<HTMLHtmlElement | null>(null)
 
   const { quote, handleUpdateDiscounts, handleUpdateTax } = useContext(AppContext)
 
-  function saveQuote(e: any) {
+  function saveQuote(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
+    const section = ref.current
 
-    const a = window.open('', '', 'height=660, width=750')
-    a!.document.write('<html><body >')
-    a!.document.write(ref.current.outerHTML.toString())
-    a!.document.write('</body></html>')
-    a!.document.close()
-    a!.print()
+    if (!section) return
+
+    const a = window.open('', '', 'height=880, width=970')
+    a?.document.write('<html><body >')
+    a?.document.write(section?.outerHTML.toString())
+    a?.document.write('</body></html>')
+    a?.document.close()
+    a?.print()
   }
 
   return (
@@ -44,7 +47,7 @@ export default function Quote(): ReactElement {
               <input
                 type="number"
                 name="discounts"
-                onChange={(e) => handleUpdateDiscounts!(Number(e.target.value))}
+                onChange={(e) => handleUpdateDiscounts(Number(e.target.value))}
               />
               <label>Discounts</label>
             </span>
@@ -52,7 +55,7 @@ export default function Quote(): ReactElement {
               <input
                 type="number"
                 name="tax"
-                onChange={(e) => handleUpdateTax!(Number(e.target.value))}
+                onChange={(e) => handleUpdateTax(Number(e.target.value))}
               />
               <label>Tax</label>
             </span>

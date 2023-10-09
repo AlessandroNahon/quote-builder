@@ -20,8 +20,7 @@ export default function useQuote() {
         ...lineItem,
         quantity: 0,
         unitPrice: 0,
-        totalPrice: 0,
-        total: 0
+        totalPrice: 0
       }
     })
   }
@@ -35,17 +34,17 @@ export default function useQuote() {
 
   function handleUpdateItemQty(lineItem: LineItemDataInterface, quantity: number) {
     dispatch({
-      ...lineItem,
       type: 'updateItemQuantity',
-      quantity
+      quantity,
+      id: lineItem.id
     })
   }
 
   function handleUpdateItemUnitPrice(lineItem: LineItemDataInterface, unitPrice: number) {
     dispatch({
-      ...lineItem,
       type: 'updateItemUnitPrice',
-      unitPrice
+      unitPrice,
+      id: lineItem.id
     })
   }
 
@@ -89,7 +88,7 @@ export default function useQuote() {
 
   function handleSelectProduct(product: ProductType) {
     if (quote.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)) {
-      let value = prompt('Enter the product SKU to remove it from the quote', '')
+      const value = prompt('Enter the product SKU to remove it from the quote', '')
       if (value === product.sku) handleDeleteLineItem(product.id)
     } else {
       handleAddLineItem(product)

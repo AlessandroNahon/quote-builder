@@ -1,4 +1,4 @@
-import type { Dispatch, ReactElement, SetStateAction } from 'react'
+import React, { type Dispatch, type ReactElement, type SetStateAction } from 'react'
 
 interface Props {
   placeholder: string

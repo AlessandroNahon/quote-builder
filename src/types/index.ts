@@ -12,7 +12,7 @@ export interface LineItemDataInterface extends ProductType {
 }
 
 export interface QuoteInterface {
-  lineItems: LineItemDataInterface[] | any
+  lineItems: LineItemDataInterface[] | []
   tax: number
   subtotal: number
   discounts: number

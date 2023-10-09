@@ -1,4 +1,4 @@
-import { useContext, type ReactElement, useState, useEffect } from 'react'
+import React, { useContext, type ReactElement, useState, useEffect } from 'react'
 
 import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
@@ -16,7 +16,7 @@ interface Props {
 export default function Product({ product, setProductInModal }: Props): ReactElement {
   const { quote } = useContext(AppContext)
   const ok = quote.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
-  const imgUrl = useProgressiveImage(product?.url!)
+  const imgUrl = useProgressiveImage(product.url ?? null)
 
   return (
     <div className={ok ? 'product selected' : 'product'} key={product.sku}>
@@ -28,7 +28,7 @@ export default function Product({ product, setProductInModal }: Props): ReactEle
             alt=""
             onClick={(e) => {
               e.stopPropagation()
-              setProductInModal!(product)
+              setProductInModal && setProductInModal(product)
             }}
             loading="eager"
           />
@@ -48,12 +48,12 @@ export default function Product({ product, setProductInModal }: Props): ReactEle
   )
 }
 
-function useProgressiveImage(src: string) {
+function useProgressiveImage(src: string | null) {
   const [sourceLoaded, setSourceLoaded] = useState<string | null>(null)
 
   useEffect(() => {
     const img = new Image()
-    img.src = src
+    img.src = src ?? ''
     img.onload = () => setSourceLoaded(src)
   }, [src])
 

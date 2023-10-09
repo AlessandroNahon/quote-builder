@@ -1,4 +1,4 @@
-import { type ReactElement, useState, useContext, useRef } from 'react'
+import React, { type ReactElement, useState, useContext, useRef } from 'react'
 
 import { ProductType } from '../types'
 import { PopUpImage, Product } from '.'
@@ -27,10 +27,10 @@ export default function Products({ products }: Props): ReactElement {
   }
 
   function selectProduct(product: ProductType): void {
-    handleSelectProduct!(product)
+    handleSelectProduct(product)
     setSearchValue('')
 
-    let form: any = formRef.current
+    const form: HTMLFormElement = formRef.current as unknown as HTMLFormElement
 
     if (form) form.reset()
   }
@@ -45,7 +45,7 @@ export default function Products({ products }: Props): ReactElement {
       </span>
 
       <ul>
-        {filterProductsBySearchValue(products)?.map((product: ProductType, index: number) => (
+        {filterProductsBySearchValue(products)?.map((product: ProductType) => (
           <li
             role="button"
             tabIndex={0}

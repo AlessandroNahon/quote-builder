@@ -1,3 +1,5 @@
+import React, { useState } from 'react'
+
 import AppContext from './context/appContext'
 
 import { QuoteBuilder } from './views'
@@ -5,7 +7,6 @@ import { QuoteBuilder } from './views'
 import './App.css'
 
 import useQuote from './hooks/useQuote'
-import { useState } from 'react'
 
 function App() {
   const [searchValue, setSearchValue] = useState<string>('')
