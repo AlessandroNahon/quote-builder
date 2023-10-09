@@ -53,11 +53,7 @@ export default function Products({ products }: Props): ReactElement {
             onClick={() => selectProduct(product)}
             onKeyUp={(e) => e.code === 'Enter' && selectProduct(product)}
           >
-            <Product
-              product={product}
-              setProductInModal={setProductInModal}
-              productInModal={productInModal!}
-            />
+            <Product product={product} setProductInModal={setProductInModal} />
           </li>
         ))}
       </ul>

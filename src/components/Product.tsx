@@ -10,7 +10,6 @@ import PictureSvg from '../picture.svg'
 interface Props {
   product: ProductType
   setProductInModal?: (product: ProductType) => void
-  productInModal?: ProductType
 }
 
 export default function Product({ product, setProductInModal }: Props): ReactElement {
