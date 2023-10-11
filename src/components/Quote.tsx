@@ -29,16 +29,16 @@ export default function Quote(): ReactElement {
     <section id="browser" className="quote" ref={ref}>
       <span className="browser-header">
         <h2>Quote</h2>
-        {quote.lineItems.length > 0 && (
+        {quote?.lineItems.length > 0 && (
           <button onClick={saveQuote}>
             <img className="download" src={DownloadSvg} alt="download button" loading="eager" />
           </button>
         )}
       </span>
-      {quote.lineItems.length === 0 && <h3>Select a product to start a quote.</h3>}
-      {quote.lineItems.length > 0 && (
+      {quote?.lineItems.length === 0 && <h3>Select a product to start a quote.</h3>}
+      {quote?.lineItems.length > 0 && (
         <>
-          {quote.lineItems?.map((item: LineItemDataInterface) => (
+          {quote?.lineItems?.map((item: LineItemDataInterface) => (
             <LineItem key={item.sku} item={item} />
           ))}
           <div id="total">

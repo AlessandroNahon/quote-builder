@@ -14,7 +14,7 @@ interface Props {
 
 export default function Product({ product, setProductInModal }: Props): ReactElement {
   const { quote } = useContext(AppContext)
-  const selected = quote.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
+  const selected = quote?.lineItems.some((li: LineItemDataInterface) => li.id === product.id)
   const imgUrl = useProgressiveImage(product.url ?? null)
 
   return (
