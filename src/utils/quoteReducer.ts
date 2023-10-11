@@ -15,8 +15,8 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
   switch (action.type) {
     case 'addLineItem': {
       if (
-        quote.lineItems?.length > 0 &&
-        quote.lineItems?.some((p: LineItemDataInterface) => p.id === action.lineItem.id)
+        quote?.lineItems?.length > 0 &&
+        quote?.lineItems?.some((p: LineItemDataInterface) => p.id === action.lineItem.id)
       )
         return quote
 
@@ -26,11 +26,11 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
     case 'removeLineItem': {
       return {
         ...quote,
-        lineItems: quote.lineItems.filter((p: LineItemDataInterface) => p.id !== action.id)
+        lineItems: quote?.lineItems.filter((p: LineItemDataInterface) => p.id !== action.id)
       }
     }
     case 'updateItemQuantity': {
-      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
+      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return { ...li, quantity: Number(action.quantity) }
         } else {
@@ -41,7 +41,7 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemUnitPrice': {
-      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
+      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return { ...li, unitPrice: Number(action.unitPrice) }
         } else {
@@ -52,7 +52,7 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemTotal': {
-      const updatedLineItems = quote.lineItems.map((li: LineItemDataInterface) => {
+      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
         if (li.id === action.id) {
           return {
             ...li,
@@ -66,7 +66,7 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateSubTotal': {
-      const subtotal = quote.lineItems
+      const subtotal = quote?.lineItems
         .map((li: LineItemDataInterface) => li.totalPrice)
         .reduce((partialSum: number, a: number) => partialSum + a, 0)
 
