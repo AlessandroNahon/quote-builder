@@ -20,7 +20,8 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
       )
         return quote
 
-      const updatedLineItems: LineItemDataInterface[] = [...quote.lineItems, action.lineItem]
+      const lineItems = quote?.lineItems ?? []
+      const updatedLineItems: LineItemDataInterface[] = [...lineItems, action.lineItem]
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'removeLineItem': {
@@ -73,7 +74,7 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
       return { ...quote, subtotal: Number(subtotal) }
     }
     case 'updateTotal': {
-      const total = quote.subtotal - quote.discounts + quote.tax
+      const total = quote?.subtotal - quote?.discounts + quote?.tax
       return { ...quote, total: Number(total) }
     }
     case 'updateDiscounts': {
