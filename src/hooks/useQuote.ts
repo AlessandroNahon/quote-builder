@@ -1,17 +1,17 @@
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import { LineItemDataInterface, ProductType } from '../types'
 import quoteReducer from '../utils/quoteReducer'
 
-const initialArg = {
-  lineItems: [],
-  tax: 0,
-  subtotal: 0,
-  discounts: 0,
-  total: 0
-}
+const localStorage = window.localStorage.getItem('MY_APP_STATE')
+
+const initialArg = localStorage && JSON.parse(localStorage).currentQuote
 
 export default function useQuote() {
   const [quote, dispatch] = useReducer(quoteReducer, initialArg)
+
+  useEffect(() => {
+    window.localStorage.setItem('MY_APP_STATE', JSON.stringify({ currentQuote: quote, quotes: [] }))
+  }, [quote])
 
   function handleAddLineItem(lineItem: ProductType) {
     dispatch({

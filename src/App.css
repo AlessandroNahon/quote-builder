@@ -1,3 +1,7 @@
+:root {
+  --base-font-size: 16px;
+}
+
 @keyframes drawCheckmark {
   0% {
     stroke-dasharray: 50 50;
@@ -48,7 +52,7 @@
   align-items: center;
 
   & input {
-    font-size: 16px;
+    font-size: var(--base-font-size);
     min-width: 200px;
     padding-bottom: 5px;
   }
@@ -59,7 +63,7 @@
   }
 
   & button {
-    font-size: 16px;
+    font-size: var(--base-font-size);
     cursor: pointer;
     padding: 8px;
     border: none;
@@ -298,7 +302,7 @@ label {
   z-index: 1;
   transition: 0.1s ease-out;
   display: none;
-  filter: invert(50%) sepia(90%) saturate(200%) hue-rotate(90deg) brightness(100%) contrast(90%);
+  filter: invert(40%) sepia(40%) saturate(800%) hue-rotate(210deg) brightness(100%) contrast(350%);
 
   &:hover {
     transform: scale(1.05);
