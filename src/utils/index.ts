@@ -6,6 +6,8 @@ export function toTitleCase(str: string) {
 }
 
 export function convertToCurrency(ammount: number, currency: string) {
+  if (!ammount) return
+
   return ammount.toLocaleString('en-US', { style: 'currency', currency })
 }
 

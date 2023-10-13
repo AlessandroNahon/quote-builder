@@ -13,6 +13,7 @@ type QuoteActionType =
   | { type: 'resetQuote' }
   | { type: 'addQuoteName'; name: string }
   | { type: 'setQuote'; quote: QuoteType }
+  | { type: 'deleteQuote' }
 
 export default function quoteReducer(
   quote: QuoteInterface,

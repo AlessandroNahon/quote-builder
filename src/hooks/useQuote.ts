@@ -133,7 +133,11 @@ export default function useQuote() {
         if (value === product.sku) handleDeleteLineItem(product.id)
       }
       handleDeleteLineItem(product.id)
-      if (quote?.lineItems.length === 1) handleResetQuote()
+      if (
+        quote?.lineItems.length === 1 &&
+        (!quote.name || quote.name.length === 0)
+      )
+        handleResetQuote()
     } else {
       handleAddLineItem(product)
     }
@@ -141,17 +145,18 @@ export default function useQuote() {
     handleUpdateSubTotal()
     handleUpdateTotal()
   }
-
+  console.log('quoteList', quoteList)
   function handleSaveQuote() {
+    const ql = quoteList ?? []
     if (quote.name === '' || !quote.name) {
-      alert('Give your quote a name!')
+      alert("Don't forget to give your quote a name!")
       return
     } else {
       window.localStorage.setItem(
         'MY_APP_STATE',
         JSON.stringify({
           currentQuote: currentLocalQuote,
-          quotes: (quoteList ?? []).push({ ...quote, id: uuidv4() })
+          quotes: ql.push({ ...quote, id: uuidv4() })
         })
       )
       handleResetQuote()
@@ -159,23 +164,28 @@ export default function useQuote() {
   }
 
   function handleUpdateQuote() {
-    window.localStorage.setItem(
-      'MY_APP_STATE',
-      JSON.stringify({
-        currentQuote: quote,
-        quotes: quoteList.map((q: QuoteType) => {
+    if (quote.name === '' || !quote.name) {
+      alert('Your quote needs a name!')
+      return
+    } else {
+      window.localStorage.setItem(
+        'MY_APP_STATE',
+        JSON.stringify({
+          currentQuote: quote,
+          quotes: quoteList.map((q: QuoteType) => {
+            if (q.id === quote.id) return quote
+            return q
+          })
+        })
+      )
+
+      setQuoteList(
+        quoteList.map((q: QuoteType) => {
           if (q.id === quote.id) return quote
           return q
         })
-      })
-    )
-
-    setQuoteList(
-      quoteList.map((q: QuoteType) => {
-        if (q.id === quote.id) return quote
-        return q
-      })
-    )
+      )
+    }
   }
 
   function handleSelectQuote(
@@ -187,6 +197,30 @@ export default function useQuote() {
       type: 'setQuote',
       quote: q
     })
+  }
+
+  function handleDeleteQuote() {
+    if (window.confirm(`Are you sure you want to delete ${quote.name}?`)) {
+      window.localStorage.setItem(
+        'MY_APP_STATE',
+        JSON.stringify({
+          currentQuote: {
+            id: '',
+            name: '',
+            lineItems: [],
+            tax: 0,
+            subtotal: 0,
+            discounts: 0,
+            total: 0
+          },
+          quotes: quoteList.filter((q: QuoteType) => q.id != quote.id)
+        })
+      )
+
+      setQuoteList(quoteList.filter((q: QuoteType) => q.id != quote.id))
+
+      handleResetQuote()
+    }
   }
 
   return {
@@ -204,6 +238,7 @@ export default function useQuote() {
     quoteList,
     handleSelectQuote,
     handleUpdateQuote,
-    handleResetQuote
+    handleResetQuote,
+    handleDeleteQuote
   }
 }
