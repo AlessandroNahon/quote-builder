@@ -22,8 +22,11 @@ export default function Products({ products }: Props): ReactElement {
   if (products.length === 0) return <p>Nothing to see here</p>
 
   function filterProductsBySearchValue(products: ProductType[]): ProductType[] {
-    if (startsWithNumber(searchValue)) return products.filter((p) => p.sku.includes(searchValue))
-    return products.filter((p) => p.name.toLowerCase().includes(searchValue.toLowerCase()))
+    if (startsWithNumber(searchValue))
+      return products.filter((p) => p.sku.includes(searchValue))
+    return products.filter((p) =>
+      p.name.toLowerCase().includes(searchValue.toLowerCase())
+    )
   }
 
   function selectProduct(product: ProductType): void {
@@ -40,7 +43,10 @@ export default function Products({ products }: Props): ReactElement {
       <span className="browser-header">
         <h2>Products</h2>
         <form ref={formRef}>
-          <Search placeholder="Search products" setSearchValue={setSearchValue} />
+          <Search
+            placeholder="Search products"
+            setSearchValue={setSearchValue}
+          />
         </form>
       </span>
 
@@ -58,7 +64,10 @@ export default function Products({ products }: Props): ReactElement {
         ))}
       </ul>
       {productInModal && productInModal?.url && (
-        <PopUpImage product={productInModal} setProductInModal={setProductInModal} />
+        <PopUpImage
+          product={productInModal}
+          setProductInModal={setProductInModal}
+        />
       )}
     </section>
   )

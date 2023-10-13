@@ -85,8 +85,8 @@
       background-color: rgba(119, 136, 153, 0.5);
 
       & .download {
-        filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(200deg) brightness(118%)
-          contrast(119%);
+        filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(200deg)
+          brightness(118%) contrast(119%);
       }
     }
   }
@@ -285,7 +285,8 @@ label {
   margin: 10px 20px;
   cursor: pointer;
   transition: 0.1s ease-out;
-  filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(300deg) brightness(100%) contrast(200%);
+  filter: invert(48%) sepia(25%) saturate(1006%) hue-rotate(300deg)
+    brightness(100%) contrast(200%);
 
   &:hover {
     transform: scale(1.05);
@@ -310,7 +311,8 @@ label {
   z-index: 1;
   transition: 0.1s ease-out;
   display: none;
-  filter: invert(40%) sepia(40%) saturate(800%) hue-rotate(210deg) brightness(100%) contrast(350%);
+  filter: invert(40%) sepia(40%) saturate(800%) hue-rotate(210deg)
+    brightness(100%) contrast(350%);
 
   &:hover {
     transform: scale(1.05);
@@ -425,8 +427,8 @@ label {
   transition: all 0.3s ease-out;
 
   &:hover {
-    color:blue;
-    background-color:greenyellow;
+    color: blue;
+    background-color: greenyellow;
     box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.15);
   }
 }

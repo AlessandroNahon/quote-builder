@@ -5,19 +5,28 @@ import { uuidv4 } from '../utils'
 export interface AppContextInterface {
   handleSelectProduct: (product: ProductType) => void
   quote: QuoteType
-  handleUpdateItemQty: (lineItem: LineItemDataInterface, quantity: number) => void
-  handleUpdateItemUnitPrice: (lineItem: LineItemDataInterface, unitPrice: number) => void
+  handleUpdateItemQty: (
+    lineItem: LineItemDataInterface,
+    quantity: number
+  ) => void
+  handleUpdateItemUnitPrice: (
+    lineItem: LineItemDataInterface,
+    unitPrice: number
+  ) => void
   handleUpdateItemTotal: (id: number) => void
   handleUpdateSubTotal: () => void
   handleUpdateTotal: () => void
   handleUpdateDiscounts: (discounts: number) => void
   handleUpdateTax: (tax: number) => void
   setSearchValue: Dispatch<SetStateAction<string>>
-  searchValue: string,
-  handleSaveQuote: () => void,
+  searchValue: string
+  handleSaveQuote: () => void
   handleAddQuoteName: (e: React.ChangeEvent<HTMLInputElement>) => void
-  quoteList: QuoteType[] | [],
-  handleSelectQuote: (e: React.MouseEvent<HTMLDivElement>, quote: QuoteType) => void,
+  quoteList: QuoteType[] | []
+  handleSelectQuote: (
+    e: React.MouseEvent<HTMLDivElement>,
+    quote: QuoteType
+  ) => void
   handleUpdateQuote: () => void
   handleResetQuote: () => void
 }

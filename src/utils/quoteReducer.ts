@@ -14,7 +14,10 @@ type QuoteActionType =
   | { type: 'addQuoteName'; name: string }
   | { type: 'setQuote'; quote: QuoteType }
 
-export default function quoteReducer(quote: QuoteInterface, action: QuoteActionType) {
+export default function quoteReducer(
+  quote: QuoteInterface,
+  action: QuoteActionType
+) {
   switch (action.type) {
     case 'addQuoteName': {
       return { ...quote, name: action.name }
@@ -22,53 +25,66 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
     case 'addLineItem': {
       if (
         quote?.lineItems?.length > 0 &&
-        quote?.lineItems?.some((p: LineItemDataInterface) => p.id === action.lineItem.id)
+        quote?.lineItems?.some(
+          (p: LineItemDataInterface) => p.id === action.lineItem.id
+        )
       )
         return quote
 
       const lineItems = quote?.lineItems ?? []
-      const updatedLineItems: LineItemDataInterface[] = [...lineItems, action.lineItem]
+      const updatedLineItems: LineItemDataInterface[] = [
+        ...lineItems,
+        action.lineItem
+      ]
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'removeLineItem': {
       return {
         ...quote,
-        lineItems: quote?.lineItems.filter((p: LineItemDataInterface) => p.id !== action.id)
+        lineItems: quote?.lineItems.filter(
+          (p: LineItemDataInterface) => p.id !== action.id
+        )
       }
     }
     case 'updateItemQuantity': {
-      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
-        if (li.id === action.id) {
-          return { ...li, quantity: Number(action.quantity) }
-        } else {
-          return li
+      const updatedLineItems = quote?.lineItems.map(
+        (li: LineItemDataInterface) => {
+          if (li.id === action.id) {
+            return { ...li, quantity: Number(action.quantity) }
+          } else {
+            return li
+          }
         }
-      })
+      )
 
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemUnitPrice': {
-      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
-        if (li.id === action.id) {
-          return { ...li, unitPrice: Number(action.unitPrice) }
-        } else {
-          return li
+      const updatedLineItems = quote?.lineItems.map(
+        (li: LineItemDataInterface) => {
+          if (li.id === action.id) {
+            return { ...li, unitPrice: Number(action.unitPrice) }
+          } else {
+            return li
+          }
         }
-      })
+      )
 
       return { ...quote, lineItems: updatedLineItems }
     }
     case 'updateItemTotal': {
-      const updatedLineItems = quote?.lineItems.map((li: LineItemDataInterface) => {
-        if (li.id === action.id) {
-          return {
-            ...li,
-            totalPrice: Number(li.unitPrice) * Number(li.quantity)
+      const updatedLineItems = quote?.lineItems.map(
+        (li: LineItemDataInterface) => {
+          if (li.id === action.id) {
+            return {
+              ...li,
+              totalPrice: Number(li.unitPrice) * Number(li.quantity)
+            }
+          } else {
+            return li
           }
-        } else {
-          return li
         }
-      })
+      )
 
       return { ...quote, lineItems: updatedLineItems }
     }

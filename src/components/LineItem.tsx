@@ -53,11 +53,19 @@ export default function LineItem({ item }: Props): ReactElement {
       <div className="line-item-data">
         <span>
           <label>Qty</label>
-          <input type="number" onChange={handleQtyInput} value={item.quantity} />
+          <input
+            type="number"
+            onChange={handleQtyInput}
+            value={item.quantity}
+          />
         </span>
         <span>
           <label>Unit Price</label>
-          <input type="text" onChange={handleUnitPriceInput} value={item.unitPrice} />
+          <input
+            type="text"
+            onChange={handleUnitPriceInput}
+            value={item.unitPrice}
+          />
         </span>
 
         <p>Unit Total: {convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>

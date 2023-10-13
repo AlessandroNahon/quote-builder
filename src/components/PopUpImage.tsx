@@ -21,7 +21,12 @@ export default function PopUpImage({ product, setProductInModal }: PopUpProp) {
           onClick={() => setProductInModal(null)}
           loading="eager"
         />
-        <img className="pop-up-img" src={product?.url} alt={product.name} loading="eager" />
+        <img
+          className="pop-up-img"
+          src={product?.url}
+          alt={product.name}
+          loading="eager"
+        />
       </div>
     </div>,
     container as Element

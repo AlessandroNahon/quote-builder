@@ -1,12 +1,23 @@
-import React, { type Dispatch, type ReactElement, type SetStateAction } from 'react'
+import React, {
+  type Dispatch,
+  type ReactElement,
+  type SetStateAction
+} from 'react'
 
 interface Props {
   placeholder: string
   setSearchValue: Dispatch<SetStateAction<string>>
 }
 
-export default function Search({ placeholder, setSearchValue }: Props): ReactElement {
+export default function Search({
+  placeholder,
+  setSearchValue
+}: Props): ReactElement {
   return (
-    <input type="text" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)} />
+    <input
+      type="text"
+      placeholder={placeholder}
+      onChange={(e) => setSearchValue(e.target.value)}
+    />
   )
 }
