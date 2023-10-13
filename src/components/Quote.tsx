@@ -103,7 +103,7 @@ export default function Quote(): ReactElement {
           className="action-button"
           onClick={quoteExists ? handleUpdateQuote : handleSaveQuote}
         >
-          {quoteExists ? 'Update' : 'Save'}
+          {quoteExists ? 'Update' : 'Create'}
         </button>
         {quoteExists && (
           <button className="action-button delete" onClick={handleDeleteQuote}>
