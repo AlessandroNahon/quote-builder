@@ -5,7 +5,7 @@ import LeftArrowSvg from '../left-arrow.svg'
 
 interface Props {
   className: string
-  setSliderIsOpen: any
+  setSliderIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   sliderIsOpen: boolean
 }
 
