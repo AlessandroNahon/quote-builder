@@ -1,4 +1,4 @@
-import { LineItemDataInterface, QuoteInterface } from '../types'
+import { LineItemDataInterface, QuoteInterface, QuoteType } from '../types'
 
 type QuoteActionType =
   | { type: 'addLineItem'; lineItem: LineItemDataInterface }
@@ -10,9 +10,15 @@ type QuoteActionType =
   | { type: 'updateDiscounts'; discounts: number }
   | { type: 'updateTax'; tax: number }
   | { type: 'updateTotal' }
+  | { type: 'resetQuote' }
+  | { type: 'addQuoteName'; name: string }
+  | { type: 'setQuote'; quote: QuoteType }
 
 export default function quoteReducer(quote: QuoteInterface, action: QuoteActionType) {
   switch (action.type) {
+    case 'addQuoteName': {
+      return { ...quote, name: action.name }
+    }
     case 'addLineItem': {
       if (
         quote?.lineItems?.length > 0 &&
@@ -82,6 +88,20 @@ export default function quoteReducer(quote: QuoteInterface, action: QuoteActionT
     }
     case 'updateTax': {
       return { ...quote, tax: action.tax }
+    }
+    case 'resetQuote': {
+      return {
+        id: '',
+        name: '',
+        lineItems: [],
+        tax: 0,
+        subtotal: 0,
+        discounts: 0,
+        total: 0
+      }
+    }
+    case 'setQuote': {
+      return action.quote
     }
     default: {
       throw Error('Unknown action')

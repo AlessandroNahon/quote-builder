@@ -12,6 +12,8 @@ export interface LineItemDataInterface extends ProductType {
 }
 
 export interface QuoteInterface {
+  id: string
+  name: string
   lineItems: LineItemDataInterface[] | []
   tax: number
   subtotal: number
@@ -20,3 +22,8 @@ export interface QuoteInterface {
 }
 
 export type QuoteType = QuoteInterface
+
+export interface UserInterface {
+  id: number
+  quotes: QuoteType[]
+}

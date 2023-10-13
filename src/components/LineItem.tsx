@@ -1,13 +1,13 @@
 import React, { useContext, type ReactElement } from 'react'
 import Product from './Product'
-import { LineItemDataInterface, ProductType } from '../types'
+import { LineItemDataInterface } from '../types'
 import AppContext from '../context/appContext'
 import { convertToCurrency } from '../utils'
 
 import CloseSvg from '../trash.svg'
 
 interface Props {
-  item: ProductType
+  item: LineItemDataInterface
 }
 
 export default function LineItem({ item }: Props): ReactElement {
@@ -53,11 +53,11 @@ export default function LineItem({ item }: Props): ReactElement {
       <div className="line-item-data">
         <span>
           <label>Qty</label>
-          <input type="number" onChange={handleQtyInput} />
+          <input type="number" onChange={handleQtyInput} value={item.quantity} />
         </span>
         <span>
           <label>Unit Price</label>
-          <input type="text" onChange={handleUnitPriceInput} />
+          <input type="text" onChange={handleUnitPriceInput} value={item.unitPrice} />
         </span>
 
         <p>Unit Total: {convertToCurrency(lineItem?.totalPrice, 'CAD')}</p>

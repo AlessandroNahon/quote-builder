@@ -51,6 +51,13 @@
   justify-content: space-between;
   align-items: center;
 
+  & .button-group {
+    min-width: 7em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   & input {
     font-size: var(--base-font-size);
     min-width: 200px;
@@ -123,6 +130,7 @@ input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
+  outline: none;
 }
 
 ul {
@@ -320,6 +328,106 @@ label {
 
   &:hover {
     transform: scale(1.05);
+  }
+}
+
+.quote-name {
+  margin-bottom: 25px;
+  font-size: 20px;
+  padding-bottom: 0.25em;
+  font-weight: 600;
+  min-width: 15em;
+}
+
+.existing-quotes {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  & h3 {
+    margin-right: 2em;
+  }
+}
+
+.slider {
+  position: absolute;
+  right: -30em;
+  top: 0;
+  height: 100vh;
+  padding: 25px;
+  min-width: 15em;
+  background-color: blanchedalmond;
+  z-index: 10000;
+  transition: right 0.25s cubic-bezier(0.89, 0.63, 0.06, 0.06);
+}
+
+.slider-outside {
+  position: absolute;
+  top: 0;
+  right: -100vw;
+  background-color: transparent;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+}
+
+.is-open {
+  right: 0;
+}
+
+.left-arrow {
+  max-width: 20px;
+  background-color: transparent;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.slider-item {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.quote-buttons {
+  & button {
+    margin-left: 10px;
+  }
+}
+
+.slider-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #3b3355;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: none;
+}
+
+.action-button {
+  font-size: 20px;
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    color:blue;
+    background-color:greenyellow;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.15);
   }
 }
 
