@@ -2,17 +2,14 @@ import { useReducer, useEffect, useState } from 'react'
 import { LineItemDataInterface, ProductType, QuoteType } from '../types'
 import quoteReducer from '../utils/quoteReducer'
 import { uuidv4 } from '../utils'
-
-const localStorageName = 'QUOTE_STATE'
-const localStorage = window.localStorage.getItem(localStorageName)
-const localQuotes = localStorage ? JSON.parse(localStorage)?.quotes : []
-const currentLocalQuote = localStorage && JSON.parse(localStorage)?.currentQuote
-
-const initialArg = currentLocalQuote
+import {
+  currentLocalQuote,
+  localQuotes,
+  localStorageName
+} from '../utils/localStorage'
 
 export default function useQuote() {
-  const [quote, dispatch] = useReducer(quoteReducer, initialArg)
-
+  const [quote, dispatch] = useReducer(quoteReducer, currentLocalQuote)
   const [quoteList, setQuoteList] = useState(localQuotes)
 
   useEffect(() => {
@@ -125,33 +122,15 @@ export default function useQuote() {
     })
   }
 
-  function handleSelectProduct(product: ProductType) {
-    const item: LineItemDataInterface | undefined = quote?.lineItems?.find(
-      (p: LineItemDataInterface) => p.id === product.id
-    )
-
-    if (
-      quote?.lineItems?.some((p: LineItemDataInterface) => p.id === product.id)
-    ) {
-      if (item?.quantity || item?.totalPrice || item?.unitPrice) {
-        const value = prompt(
-          'Enter the product SKU to remove it from the quote',
-          ''
-        )
-        if (value === product.sku) handleDeleteLineItem(product.id)
-      }
-      handleDeleteLineItem(product.id)
-      if (
-        quote?.lineItems.length === 1 &&
-        (!quote.name || quote.name.length === 0)
-      )
-        handleResetQuote()
-    } else {
-      handleAddLineItem(product)
-    }
-
-    handleUpdateSubTotal()
-    handleUpdateTotal()
+  function handleSelectQuote(
+    e: React.MouseEvent<HTMLDivElement>,
+    q: QuoteType
+  ) {
+    e.preventDefault()
+    dispatch({
+      type: 'setQuote',
+      quote: q
+    })
   }
 
   function handleSaveQuote() {
@@ -168,6 +147,38 @@ export default function useQuote() {
     }
   }
 
+  function handleSelectProduct(product: ProductType) {
+    const item: LineItemDataInterface | undefined = quote?.lineItems?.find(
+      (p: LineItemDataInterface) => p.id === product.id
+    )
+    const isProduct = quote?.lineItems?.some(
+      (p: LineItemDataInterface) => p.id === product.id
+    )
+    if (isProduct) {
+      const hasDataValues =
+        item?.quantity || item?.totalPrice || item?.unitPrice
+      if (hasDataValues) {
+        const value = prompt(
+          'Enter the product SKU to remove it from the quote',
+          ''
+        )
+        if (value === product.sku) handleDeleteLineItem(product.id)
+      }
+      handleDeleteLineItem(product.id)
+
+      const isEmptyQuote =
+        quote?.lineItems.length === 1 &&
+        (!quote.name || quote.name.length === 0)
+
+      if (isEmptyQuote) handleResetQuote()
+    } else {
+      handleAddLineItem(product)
+    }
+
+    handleUpdateSubTotal()
+    handleUpdateTotal()
+  }
+
   function handleUpdateQuote() {
     if (quote.name === '' || !quote.name) {
       alert('Your quote needs a name!')
@@ -182,17 +193,6 @@ export default function useQuote() {
     }
   }
 
-  function handleSelectQuote(
-    e: React.MouseEvent<HTMLDivElement>,
-    q: QuoteType
-  ) {
-    e.preventDefault()
-    dispatch({
-      type: 'setQuote',
-      quote: q
-    })
-  }
-
   function handleDeleteQuote() {
     if (window.confirm(`Are you sure you want to delete ${quote.name}?`)) {
       setQuoteList(quoteList.filter((q: QuoteType) => q.id != quote.id))
@@ -202,6 +202,7 @@ export default function useQuote() {
 
   return {
     quote,
+    quoteList,
     handleSelectProduct,
     handleUpdateItemQty,
     handleUpdateItemUnitPrice,
@@ -212,11 +213,12 @@ export default function useQuote() {
     handleUpdateTotal,
     handleSaveQuote,
     handleAddQuoteName,
-    quoteList,
     handleSelectQuote,
     handleUpdateQuote,
     handleResetQuote,
     handleDeleteQuote,
-    handleSetQuote
+    handleSetQuote,
+    handleDeleteLineItem,
+    handleAddLineItem
   }
 }
