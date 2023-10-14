@@ -1,7 +1,7 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { ProductType } from '../types'
-import CloseSvg from '../close-svg.svg'
+import CloseSvg from '../assets/close-svg.svg'
 
 interface PopUpProp {
   product: ProductType

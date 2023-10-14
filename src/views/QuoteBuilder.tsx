@@ -1,6 +1,6 @@
 import React, { type ReactElement } from 'react'
 
-import { Quote, Products } from '../components'
+import { Products, Quote } from '../components'
 import { products } from '../data'
 
 export default function QuoteBuilder(): ReactElement {

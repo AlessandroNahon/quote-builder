@@ -1,4 +1,4 @@
-import React, { type ReactElement, useState, useContext, useRef } from 'react'
+import React, { type ReactElement, useContext, useRef, useState } from 'react'
 
 import { ProductType } from '../types'
 import { PopUpImage, Product } from '.'

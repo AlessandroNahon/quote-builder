@@ -1,10 +1,10 @@
-import React, { useContext, type ReactElement } from 'react'
+import React, { type ReactElement, useContext } from 'react'
 import Product from './Product'
 import { LineItemDataInterface } from '../types'
 import AppContext from '../context/appContext'
 import { convertToCurrency } from '../utils'
 
-import CloseSvg from '../trash.svg'
+import CloseSvg from '../assets/trash.svg'
 
 interface Props {
   item: LineItemDataInterface

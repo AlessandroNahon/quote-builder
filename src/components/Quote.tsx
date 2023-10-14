@@ -1,14 +1,14 @@
-import React, { useContext, type ReactElement, useState } from 'react'
+import React, { type ReactElement, useContext, useState } from 'react'
 
 import AppContext from '../context/appContext'
 import { convertToCurrency } from '../utils'
 import { LineItemDataInterface, QuoteType } from '../types'
 
-import FileSvg from '../files.svg'
-import NewSvg from '../new.svg'
-
 import Slider from './Slider'
 import LineItem from './LineItem'
+
+import FileSvg from '../assets/files.svg'
+import NewSvg from '../assets/new.svg'
 
 export default function Quote(): ReactElement {
   const [sliderIsOpen, setSliderIsOpen] = useState<boolean>(false)

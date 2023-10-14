@@ -1,7 +1,7 @@
-import React, { useContext, type ReactElement } from 'react'
+import React, { type ReactElement, useContext } from 'react'
 import { QuoteType } from '../types'
 import AppContext from '../context/appContext'
-import LeftArrowSvg from '../left-arrow.svg'
+import LeftArrowSvg from '../assets/left-arrow.svg'
 
 interface Props {
   className: string

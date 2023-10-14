@@ -1,16 +1,16 @@
 import React, {
-  useContext,
   type ReactElement,
-  useState,
-  useEffect
+  useContext,
+  useEffect,
+  useState
 } from 'react'
 
 import { LineItemDataInterface, ProductType } from '../types'
 import AppContext from '../context/appContext'
 import { toTitleCase } from '../utils'
 
-import ZoomInSvg from '../zoom.svg'
-import PictureSvg from '../picture.svg'
+import ZoomInSvg from '../assets/zoom.svg'
+import PictureSvg from '../assets/picture.svg'
 
 interface Props {
   product: ProductType
