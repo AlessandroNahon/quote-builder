@@ -54,7 +54,7 @@ export default function LineItem({ item }: Props): ReactElement {
         <span>
           <label>Qty</label>
           <input
-            type="number"
+            type="text"
             onChange={handleQtyInput}
             value={item.quantity}
           />

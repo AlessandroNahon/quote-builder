@@ -75,7 +75,7 @@ export default function Quote(): ReactElement {
           <p> Subtotal: {convertToCurrency(quote?.subtotal, 'CAD')}</p>
           <span>
             <input
-              type="number"
+              type="text"
               name="discounts"
               onChange={(e) => handleUpdateDiscounts(Number(e.target.value))}
               value={quote?.discounts}
@@ -84,7 +84,7 @@ export default function Quote(): ReactElement {
           </span>
           <span>
             <input
-              type="number"
+              type="text"
               name="tax"
               onChange={(e) => handleUpdateTax(Number(e.target.value))}
               value={quote?.tax}
