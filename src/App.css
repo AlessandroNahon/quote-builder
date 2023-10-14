@@ -447,9 +447,8 @@ label {
   width: 20px;
   height: 20px;
   text-align: center;
-  background-color: indianred;
-  color: bisque;
-  border-radius: 50%;
+  background-color: lightgrey;
+  border-radius: 8px;
 }
 
 @media print {
