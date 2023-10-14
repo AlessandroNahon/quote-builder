@@ -3,7 +3,8 @@ import { LineItemDataInterface, ProductType, QuoteType } from '../types'
 import quoteReducer from '../utils/quoteReducer'
 import { uuidv4 } from '../utils'
 
-const localStorage = window.localStorage.getItem('MY_APP_STATE')
+const localStorageName = 'QUOTE_STATE'
+const localStorage = window.localStorage.getItem(localStorageName)
 const localQuotes = localStorage ? JSON.parse(localStorage)?.quotes : []
 const currentLocalQuote = localStorage && JSON.parse(localStorage)?.currentQuote
 
@@ -16,13 +17,13 @@ export default function useQuote() {
 
   useEffect(() => {
     window.localStorage.setItem(
-      'MY_APP_STATE',
+      localStorageName,
       JSON.stringify({
         currentQuote: quote,
         quotes: quoteList
       })
     )
-  }, [quote])
+  }, [quote, quoteList])
 
   function handleAddQuoteName(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
@@ -117,6 +118,13 @@ export default function useQuote() {
     })
   }
 
+  function handleSetQuote(quote: QuoteType) {
+    dispatch({
+      type: 'setQuote',
+      quote
+    })
+  }
+
   function handleSelectProduct(product: ProductType) {
     const item: LineItemDataInterface | undefined = quote?.lineItems?.find(
       (p: LineItemDataInterface) => p.id === product.id
@@ -145,21 +153,18 @@ export default function useQuote() {
     handleUpdateSubTotal()
     handleUpdateTotal()
   }
-  console.log('quoteList', quoteList)
+
   function handleSaveQuote() {
-    const ql = quoteList ?? []
     if (quote.name === '' || !quote.name) {
       alert("Don't forget to give your quote a name!")
       return
     } else {
-      window.localStorage.setItem(
-        'MY_APP_STATE',
-        JSON.stringify({
-          currentQuote: currentLocalQuote,
-          quotes: ql.push({ ...quote, id: uuidv4() })
-        })
-      )
-      handleResetQuote()
+      const id = uuidv4()
+      const updatedQuote = { ...quote, id }
+      const updatedQl = [...quoteList, updatedQuote]
+
+      setQuoteList(updatedQl)
+      handleSetQuote(updatedQuote)
     }
   }
 
@@ -168,23 +173,12 @@ export default function useQuote() {
       alert('Your quote needs a name!')
       return
     } else {
-      window.localStorage.setItem(
-        'MY_APP_STATE',
-        JSON.stringify({
-          currentQuote: quote,
-          quotes: quoteList.map((q: QuoteType) => {
-            if (q.id === quote.id) return quote
-            return q
-          })
-        })
-      )
-
-      setQuoteList(
-        quoteList.map((q: QuoteType) => {
-          if (q.id === quote.id) return quote
-          return q
-        })
-      )
+      const updatedQuoteList = quoteList.map((q: QuoteType) => {
+        if (q.id === quote.id) return quote
+        return q
+      })
+      handleSetQuote(quote)
+      setQuoteList(updatedQuoteList)
     }
   }
 
@@ -201,24 +195,7 @@ export default function useQuote() {
 
   function handleDeleteQuote() {
     if (window.confirm(`Are you sure you want to delete ${quote.name}?`)) {
-      window.localStorage.setItem(
-        'MY_APP_STATE',
-        JSON.stringify({
-          currentQuote: {
-            id: '',
-            name: '',
-            lineItems: [],
-            tax: 0,
-            subtotal: 0,
-            discounts: 0,
-            total: 0
-          },
-          quotes: quoteList.filter((q: QuoteType) => q.id != quote.id)
-        })
-      )
-
       setQuoteList(quoteList.filter((q: QuoteType) => q.id != quote.id))
-
       handleResetQuote()
     }
   }
@@ -239,6 +216,7 @@ export default function useQuote() {
     handleSelectQuote,
     handleUpdateQuote,
     handleResetQuote,
-    handleDeleteQuote
+    handleDeleteQuote,
+    handleSetQuote
   }
 }

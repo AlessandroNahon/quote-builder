@@ -41,7 +41,7 @@ export default function Slider({
           </button>
         </div>
 
-        {quoteList.map((q: QuoteType) => (
+        {quoteList?.map((q: QuoteType) => (
           <div
             className="slider-item"
             key={q.id}

@@ -30,6 +30,7 @@ export interface AppContextInterface {
   handleUpdateQuote: () => void
   handleResetQuote: () => void
   handleDeleteQuote: () => void
+  handleSetQuote: (quote: QuoteType) => void
 }
 
 const defaultState: AppContextInterface = {
@@ -58,7 +59,8 @@ const defaultState: AppContextInterface = {
   handleSelectQuote: () => null,
   handleUpdateQuote: () => null,
   handleResetQuote: () => null,
-  handleDeleteQuote: () => null
+  handleDeleteQuote: () => null,
+  handleSetQuote: () => null
 }
 
 const AppContext = createContext(defaultState)
