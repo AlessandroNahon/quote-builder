@@ -15,18 +15,17 @@ export default function Quote(): ReactElement {
 
   const {
     quote,
+    quoteList,
+    handleAddQuoteName,
     handleUpdateDiscounts,
     handleUpdateTax,
     handleSaveQuote,
-    handleAddQuoteName,
-    quoteList,
     handleUpdateQuote,
     handleResetQuote,
     handleDeleteQuote
   } = useContext(AppContext)
 
-  const quoteExists =
-    quoteList.length > 0 ?? quoteList.some((q: QuoteType) => q.id === quote.id)
+  const quoteExists = quoteList.some((q: QuoteType) => q.id === quote.id)
 
   return (
     <section id="browser" className="quote">
