@@ -16,6 +16,7 @@ export default function Quote(): ReactElement {
   const {
     quote,
     quoteList,
+    isUpdated,
     handleAddQuoteName,
     handleUpdateDiscounts,
     handleUpdateTax,
@@ -26,7 +27,7 @@ export default function Quote(): ReactElement {
   } = useContext(AppContext)
 
   const quoteExists = quoteList.some((q: QuoteType) => q.id === quote.id)
-
+  const updatedTimestamp = new Date().toLocaleTimeString()
   return (
     <section id="browser" className="quote">
       <span className="browser-header">
@@ -44,12 +45,14 @@ export default function Quote(): ReactElement {
             <span className="file-button">
               <span className="count">{quoteList.length}</span>
               <button onClick={() => setSliderIsOpen(!sliderIsOpen)}>
-                <img
-                  className="download"
-                  src={FileSvg}
-                  alt="files button"
-                  loading="eager"
-                />
+                {
+                  isUpdated ? <div className='loading'></div> : <img
+                    className="download"
+                    src={FileSvg}
+                    alt="files button"
+                    loading="eager"
+                  />
+                }
               </button>
             </span>
           )}
@@ -109,6 +112,9 @@ export default function Quote(): ReactElement {
             Delete
           </button>
         )}
+        <p className={isUpdated ? 'updated visible' : 'updated'}>{
+          `Updated at ${updatedTimestamp}`
+        }</p>
       </>
     </section>
   )

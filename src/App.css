@@ -14,6 +14,16 @@
   }
 }
 
+@keyframes rotateCW {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(3600deg);
+  }
+}
+
 #quote-builder {
   display: flex;
   height: 100vh;
@@ -90,6 +100,22 @@
       }
     }
   }
+}
+
+.loading {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-top: 5px solid transparent;
+  border-left: 5px solid rgb(4, 255, 0);
+  border-bottom: 5px solid rgb(255, 161, 225);
+  border-top: 5px solid rgb(255, 112, 165);
+  border-right: 5px solid rgb(0, 157, 255);
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotateCW 5s ease-out forwards;
+  background-color: transparent;
 }
 
 .products {
@@ -423,7 +449,7 @@ label {
 }
 
 .delete {
-  margin-left: 20px;
+  margin-left: 10px;
   color: bisque;
   background-color: crimson;
 
@@ -449,6 +475,25 @@ label {
   text-align: center;
   background-color: lightgrey;
   border-radius: 8px;
+}
+
+.updated {
+  font-size: 16px;
+  font-weight: 500;
+  color: greenyellow;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 8px;
+  visibility: hidden;
+  transition: all 0.1s cubic-bezier(0.89, 0.63, 0.06, 0.06);
+  transform: scaleY(0) scaleZ(0);
+  text-align: center;
+  max-width: 200px;
+}
+
+.visible {
+  visibility: visible;
+  transform: scaleY(1) scaleZ(1);
 }
 
 @media print {

@@ -11,6 +11,7 @@ import {
 export default function useQuote() {
   const [quote, dispatch] = useReducer(quoteReducer, currentLocalQuote)
   const [quoteList, setQuoteList] = useState<QuoteType[]>(localQuotes)
+  const [isUpdated, setIsUpdated] = useState<boolean>(false)
 
   useEffect(() => setLocalStorageItem(quote, quoteList), [quote, quoteList])
 
@@ -171,6 +172,11 @@ export default function useQuote() {
     handleUpdateTotal()
   }
 
+  function setIsUpdating() {
+    setTimeout(() => setIsUpdated(false), 1000)
+    setIsUpdated(true)
+  }
+  console.log('isUpdated', isUpdated)
   function handleUpdateQuote() {
     if (quote.name === '' || !quote.name) {
       alert('Your quote needs a name!')
@@ -182,6 +188,7 @@ export default function useQuote() {
       })
       handleSetQuote(quote)
       setQuoteList(updatedQuoteList)
+      setIsUpdating()
     }
   }
 
@@ -211,6 +218,7 @@ export default function useQuote() {
     handleDeleteQuote,
     handleSetQuote,
     handleDeleteLineItem,
-    handleAddLineItem
+    handleAddLineItem,
+    isUpdated
   }
 }
