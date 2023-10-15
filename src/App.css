@@ -460,6 +460,7 @@ label {
   margin-left: 10px;
   color: bisque;
   background-color: crimson;
+  cursor: pointer;
 
   &:hover {
     color: crimson;
