@@ -13,6 +13,9 @@ export default function useQuote() {
   const [quoteList, setQuoteList] = useState<QuoteType[]>(localQuotes)
   const [isUpdated, setIsUpdated] = useState<boolean>(false)
 
+  const currentFromList = quoteList.find((q: QuoteType) => q.id === quote.id)
+  const hasChanged = JSON.stringify(currentFromList) !== JSON.stringify(quote)
+
   useEffect(() => setLocalStorageItem(quote, quoteList), [quote, quoteList])
 
   function handleAddQuoteName(e: React.ChangeEvent<HTMLInputElement>) {
@@ -176,7 +179,7 @@ export default function useQuote() {
     setTimeout(() => setIsUpdated(false), 1000)
     setIsUpdated(true)
   }
-  console.log('isUpdated', isUpdated)
+
   function handleUpdateQuote() {
     if (quote.name === '' || !quote.name) {
       alert('Your quote needs a name!')
@@ -188,7 +191,7 @@ export default function useQuote() {
       })
       handleSetQuote(quote)
       setQuoteList(updatedQuoteList)
-      setIsUpdating()
+      hasChanged && setIsUpdating()
     }
   }
 
@@ -219,6 +222,7 @@ export default function useQuote() {
     handleSetQuote,
     handleDeleteLineItem,
     handleAddLineItem,
-    isUpdated
+    isUpdated,
+    hasChanged
   }
 }

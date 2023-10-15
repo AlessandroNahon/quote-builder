@@ -33,7 +33,8 @@ export interface AppContextInterface {
   handleSetQuote: (quote: QuoteType) => void
   handleDeleteLineItem: (productId: number) => void
   handleAddLineItem: (product: ProductType) => void
-  isUpdated: boolean
+  isUpdated: boolean,
+  hasChanged: boolean
 }
 
 const defaultState: AppContextInterface = {
@@ -66,7 +67,8 @@ const defaultState: AppContextInterface = {
   handleSetQuote: () => null,
   handleDeleteLineItem: () => null,
   handleAddLineItem: () => null,
-  isUpdated: false
+  isUpdated: false,
+  hasChanged: false
 }
 
 const AppContext = createContext(defaultState)

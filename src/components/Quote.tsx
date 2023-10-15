@@ -17,6 +17,7 @@ export default function Quote(): ReactElement {
     quote,
     quoteList,
     isUpdated,
+    hasChanged,
     handleAddQuoteName,
     handleUpdateDiscounts,
     handleUpdateTax,
@@ -102,7 +103,7 @@ export default function Quote(): ReactElement {
           </p>
         </div>
         <button
-          className="action-button"
+          className={`action-button ${hasChanged ? 'hover' : ''}`}
           onClick={quoteExists ? handleUpdateQuote : handleSaveQuote}
         >
           {quoteExists ? 'Update' : 'Create'}
