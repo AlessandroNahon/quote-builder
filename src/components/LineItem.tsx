@@ -53,11 +53,7 @@ export default function LineItem({ item }: Props): ReactElement {
       <div className="line-item-data">
         <span>
           <label>Qty</label>
-          <input
-            type="text"
-            onChange={handleQtyInput}
-            value={item.quantity}
-          />
+          <input type="text" onChange={handleQtyInput} value={item.quantity} />
         </span>
         <span>
           <label>Unit Price</label>

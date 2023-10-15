@@ -5,22 +5,14 @@ import { uuidv4 } from '../utils'
 import {
   currentLocalQuote,
   localQuotes,
-  localStorageName
+  setLocalStorageItem
 } from '../utils/localStorage'
 
 export default function useQuote() {
   const [quote, dispatch] = useReducer(quoteReducer, currentLocalQuote)
-  const [quoteList, setQuoteList] = useState(localQuotes)
+  const [quoteList, setQuoteList] = useState<QuoteType[]>(localQuotes)
 
-  useEffect(() => {
-    window.localStorage.setItem(
-      localStorageName,
-      JSON.stringify({
-        currentQuote: quote,
-        quotes: quoteList
-      })
-    )
-  }, [quote, quoteList])
+  useEffect(() => setLocalStorageItem(quote, quoteList), [quote, quoteList])
 
   function handleAddQuoteName(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
@@ -211,10 +203,10 @@ export default function useQuote() {
     handleUpdateTax,
     handleUpdateSubTotal,
     handleUpdateTotal,
-    handleSaveQuote,
     handleAddQuoteName,
-    handleSelectQuote,
+    handleSaveQuote,
     handleUpdateQuote,
+    handleSelectQuote,
     handleResetQuote,
     handleDeleteQuote,
     handleSetQuote,
