@@ -9,6 +9,7 @@ import LineItem from './LineItem'
 
 import FileSvg from '../assets/files.svg'
 import NewSvg from '../assets/new.svg'
+import Toast from './Toast'
 
 export default function Quote(): ReactElement {
   const [sliderIsOpen, setSliderIsOpen] = useState<boolean>(false)
@@ -24,11 +25,12 @@ export default function Quote(): ReactElement {
     handleSaveQuote,
     handleUpdateQuote,
     handleResetQuote,
-    handleDeleteQuote
+    handleDeleteQuote,
+    toastMsg,
   } = useContext(AppContext)
 
   const quoteExists = quoteList.some((q: QuoteType) => q.id === quote.id)
-  const updatedTimestamp = new Date().toLocaleTimeString()
+
   return (
     <section id="browser" className="quote">
       <span className="browser-header">
@@ -113,10 +115,8 @@ export default function Quote(): ReactElement {
             Delete
           </button>
         )}
-        <p className={isUpdated ? 'updated visible' : 'updated'}>{
-          `Updated at ${updatedTimestamp}`
-        }</p>
       </>
+      <Toast isUpdated={isUpdated} msg={toastMsg} />
     </section>
   )
 }

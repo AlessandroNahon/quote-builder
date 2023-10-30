@@ -19,11 +19,8 @@ export interface QuoteInterface {
   subtotal: number
   discounts: number
   total: number
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export type QuoteType = QuoteInterface
-
-export interface UserInterface {
-  id: number
-  quotes: QuoteType[]
-}

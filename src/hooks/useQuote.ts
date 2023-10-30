@@ -12,6 +12,7 @@ export default function useQuote() {
   const [quote, dispatch] = useReducer(quoteReducer, currentLocalQuote)
   const [quoteList, setQuoteList] = useState<QuoteType[]>(localQuotes)
   const [isUpdated, setIsUpdated] = useState<boolean>(false)
+  const [toastMsg, setToastMsg] = useState<string>('')
 
   const currentFromList = quoteList.find((q: QuoteType) => q.id === quote.id)
   const hasChanged = JSON.stringify(currentFromList) !== JSON.stringify(quote)
@@ -135,11 +136,52 @@ export default function useQuote() {
       return
     } else {
       const id = uuidv4()
-      const updatedQuote = { ...quote, id }
-      const updatedQl = [...quoteList, updatedQuote]
 
+      const updatedQuote = {
+        ...quote,
+        id,
+        createdAt: new Date()
+      }
+      const updatedQl = [...quoteList, updatedQuote]
+      const createdAt = new Date().toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit'
+      })
       setQuoteList(updatedQl)
       handleSetQuote(updatedQuote)
+      if (hasChanged) setIsUpdating(`Created ${quote?.name} at ${createdAt}`)
+    }
+  }
+
+  function handleUpdateQuote() {
+    if (quote.name === '' || !quote.name) {
+      alert('Your quote needs a name!')
+      return
+    } else {
+      const updatedQuote = { ...quote, updatedAt: new Date() }
+      const updatedQuoteList = quoteList.map((q: QuoteType) => {
+        if (q.id === quote.id) return updatedQuote
+        return q
+      })
+      const updatedAt = new Date().toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit'
+      })
+      handleSetQuote(updatedQuote)
+      setQuoteList(updatedQuoteList)
+      if (hasChanged) setIsUpdating(`Updated ${quote?.name} at ${updatedAt}`)
+    }
+  }
+
+  function handleDeleteQuote() {
+    const updatedAt = quote?.updatedAt?.toLocaleString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit'
+    })
+    if (window.confirm(`Are you sure you want to delete ${quote.name}?`)) {
+      setIsUpdating(`Deleted ${quote?.name} at ${updatedAt}`)
+      setQuoteList(quoteList.filter((q: QuoteType) => q.id != quote.id))
+      handleResetQuote()
     }
   }
 
@@ -175,31 +217,10 @@ export default function useQuote() {
     handleUpdateTotal()
   }
 
-  function setIsUpdating() {
-    setTimeout(() => setIsUpdated(false), 1000)
+  function setIsUpdating(msg: string) {
+    setTimeout(() => setIsUpdated(false), 1500)
     setIsUpdated(true)
-  }
-
-  function handleUpdateQuote() {
-    if (quote.name === '' || !quote.name) {
-      alert('Your quote needs a name!')
-      return
-    } else {
-      const updatedQuoteList = quoteList.map((q: QuoteType) => {
-        if (q.id === quote.id) return quote
-        return q
-      })
-      handleSetQuote(quote)
-      setQuoteList(updatedQuoteList)
-      hasChanged && setIsUpdating()
-    }
-  }
-
-  function handleDeleteQuote() {
-    if (window.confirm(`Are you sure you want to delete ${quote.name}?`)) {
-      setQuoteList(quoteList.filter((q: QuoteType) => q.id != quote.id))
-      handleResetQuote()
-    }
+    setToastMsg(msg)
   }
 
   return {
@@ -223,6 +244,7 @@ export default function useQuote() {
     handleDeleteLineItem,
     handleAddLineItem,
     isUpdated,
-    hasChanged
+    hasChanged,
+    toastMsg
   }
 }
